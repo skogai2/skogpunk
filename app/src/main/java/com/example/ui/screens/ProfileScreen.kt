@@ -109,6 +109,11 @@ fun ProfileScreen(
             }
         }
 
+        // Cloud Sync with Google & Firestore
+        item {
+            com.example.ui.components.GoogleCloudSyncCard()
+        }
+
         // Handle editor
         item {
             Card(

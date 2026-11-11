@@ -1,0 +1,67 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Hacker profile tracking handle, lifetime XP, solved contracts, and stats.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "handle": { "type": "string" },
+        "lifetimeXp": { "type": "integer" },
+        "contractsCompleted": { "type": "integer" },
+        "solvedQuestIds": { "type": "array" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "handle", "lifetimeXp", "createdAt", "updatedAt"]
+    },
+    "CustomQuest": {
+      "title": "CustomQuest",
+      "description": "User scripted cyber contract and arena mod in SkogScript DSL.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "questId": { "type": "string" },
+        "title": { "type": "string" },
+        "cabinetId": { "type": "string" },
+        "description": { "type": "string" },
+        "author": { "type": "string" },
+        "rawScript": { "type": "string" },
+        "stepCount": { "type": "integer" },
+        "maxXp": { "type": "integer" },
+        "enemyCount": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "questId", "title", "cabinetId", "rawScript", "createdAt", "updatedAt"]
+    },
+    "EventLog": {
+      "title": "EventLog",
+      "description": "Append-only activity log of game step discoveries and contract runs.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "type": { "type": "string" },
+        "roomCode": { "type": "string" },
+        "description": { "type": "string" },
+        "xpDelta": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "type", "description", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Top-level profile for each authenticated hacker."
+    },
+    "/users/{userId}/custom_quests/{questId}": {
+      "schema": "CustomQuest",
+      "description": "Personal library of custom scripted contracts."
+    },
+    "/users/{userId}/events_log/{eventId}": {
+      "schema": "EventLog",
+      "description": "Historical audit logs and XP gains."
+    }
+  }
+}

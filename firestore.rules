@@ -1,0 +1,116 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Global default-deny safety net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function isValidUserProfile(data) {
+      return data.userId is string && data.userId == request.auth.uid &&
+             data.handle is string && data.handle.size() >= 1 && data.handle.size() <= 32 &&
+             data.lifetimeXp is int && data.lifetimeXp >= 0 &&
+             (!('contractsCompleted' in data) || (data.contractsCompleted is int && data.contractsCompleted >= 0)) &&
+             (!('solvedQuestIds' in data) || (data.solvedQuestIds is list && data.solvedQuestIds.size() <= 100)) &&
+             data.createdAt is timestamp && data.createdAt <= request.time &&
+             data.updatedAt is timestamp && data.updatedAt <= request.time;
+    }
+
+    function isValidCustomQuest(data) {
+      return data.userId is string && data.userId == request.auth.uid &&
+             data.questId is string && isValidId(data.questId) &&
+             data.title is string && data.title.size() >= 1 && data.title.size() <= 100 &&
+             data.cabinetId is string && data.cabinetId.size() <= 64 &&
+             (!('description' in data) || (data.description is string && data.description.size() <= 500)) &&
+             (!('author' in data) || (data.author is string && data.author.size() <= 50)) &&
+             data.rawScript is string && data.rawScript.size() <= 50000 &&
+             (!('stepCount' in data) || (data.stepCount is int && data.stepCount >= 0)) &&
+             (!('maxXp' in data) || (data.maxXp is int && data.maxXp >= 0)) &&
+             (!('enemyCount' in data) || (data.enemyCount is int && data.enemyCount >= 0)) &&
+             data.createdAt is timestamp && data.createdAt <= request.time &&
+             data.updatedAt is timestamp && data.updatedAt <= request.time;
+    }
+
+    function isValidEventLog(data) {
+      return data.userId is string && data.userId == request.auth.uid &&
+             data.type is string && data.type.size() <= 50 &&
+             (!('roomCode' in data) || (data.roomCode is string && data.roomCode.size() <= 16)) &&
+             data.description is string && data.description.size() <= 500 &&
+             (!('xpDelta' in data) || data.xpDelta is int) &&
+             data.createdAt is timestamp && data.createdAt <= request.time;
+    }
+
+    match /users/{userId} {
+      allow get, list: if isSignedIn() && request.auth.uid == userId;
+
+      allow create: if isSignedIn() &&
+                       request.auth.uid == userId &&
+                       isValidId(userId) &&
+                       isValidUserProfile(incoming()) &&
+                       incoming().keys().hasAll(['userId', 'handle', 'lifetimeXp', 'createdAt', 'updatedAt']) &&
+                       incoming().keys().hasOnly(['userId', 'handle', 'lifetimeXp', 'contractsCompleted', 'solvedQuestIds', 'createdAt', 'updatedAt']);
+
+      allow update: if isSignedIn() &&
+                       request.auth.uid == userId &&
+                       isValidUserProfile(incoming()) &&
+                       incoming().userId == existing().userId &&
+                       incoming().createdAt == existing().createdAt &&
+                       incoming().diff(existing()).affectedKeys().hasOnly(['handle', 'lifetimeXp', 'contractsCompleted', 'solvedQuestIds', 'updatedAt']);
+
+      allow delete: if isSignedIn() && request.auth.uid == userId;
+
+      match /custom_quests/{questId} {
+        allow get, list: if isSignedIn() && request.auth.uid == userId;
+
+        allow create: if isSignedIn() &&
+                         request.auth.uid == userId &&
+                         isValidId(questId) &&
+                         isValidCustomQuest(incoming()) &&
+                         incoming().keys().hasAll(['userId', 'questId', 'title', 'cabinetId', 'rawScript', 'createdAt', 'updatedAt']) &&
+                         incoming().keys().hasOnly(['userId', 'questId', 'title', 'cabinetId', 'description', 'author', 'rawScript', 'stepCount', 'maxXp', 'enemyCount', 'createdAt', 'updatedAt']);
+
+        allow update: if isSignedIn() &&
+                         request.auth.uid == userId &&
+                         isValidId(questId) &&
+                         isValidCustomQuest(incoming()) &&
+                         incoming().userId == existing().userId &&
+                         incoming().questId == existing().questId &&
+                         incoming().createdAt == existing().createdAt &&
+                         incoming().diff(existing()).affectedKeys().hasOnly(['title', 'cabinetId', 'description', 'author', 'rawScript', 'stepCount', 'maxXp', 'enemyCount', 'updatedAt']);
+
+        allow delete: if isSignedIn() && request.auth.uid == userId;
+      }
+
+      match /events_log/{eventId} {
+        allow get, list: if isSignedIn() && request.auth.uid == userId;
+
+        allow create: if isSignedIn() &&
+                         request.auth.uid == userId &&
+                         isValidId(eventId) &&
+                         isValidEventLog(incoming()) &&
+                         incoming().keys().hasAll(['userId', 'type', 'description', 'createdAt']) &&
+                         incoming().keys().hasOnly(['userId', 'type', 'roomCode', 'description', 'xpDelta', 'createdAt']);
+
+        // Append-only invariant
+        allow update, delete: if false;
+      }
+    }
+  }
+}

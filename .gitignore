@@ -3,3 +3,7 @@ node_modules/
 /tmp
 /package-lock.json
 /.skogix
+*-debug.log
+.gradle/
+build/
+app/build/
