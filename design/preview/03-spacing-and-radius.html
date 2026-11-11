@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Skogai Arcade — Spacing &amp; Radius</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  body { margin: 0; padding: 40px; max-width: 1080px; }
+  h1.title { font-family: var(--sk-font-display); font-size: 24px; color: var(--sk-neon-yellow); text-shadow: var(--sk-glow-yellow); margin: 0 0 8px; }
+  p.lede { font-family: var(--sk-font-body); font-size: 18px; color: var(--sk-fg-2); margin: 0 0 24px; max-width: 60ch; }
+  h2 { font-family: var(--sk-font-ui); font-size: 12px; color: var(--sk-fg-muted); text-transform: uppercase; letter-spacing: .08em; margin: 28px 0 12px; }
+
+  .sp-row { display: flex; align-items: flex-end; gap: 16px; }
+  .sp { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .sp .bar { background: var(--sk-neon-violet); box-shadow: var(--sk-glow-violet); height: 20px; }
+  .sp .lbl { font-family: var(--sk-font-mono); font-size: 11px; color: var(--sk-fg-muted); }
+
+  .rad-row { display: flex; gap: 16px; }
+  .rad { width: 120px; height: 80px; background: var(--sk-card); border: 2px solid var(--sk-border); display: flex; align-items: center; justify-content: center; font-family: var(--sk-font-ui); font-size: 11px; color: var(--sk-fg-muted); }
+
+  .elev-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .elev { background: var(--sk-card); padding: 20px; border-radius: var(--sk-radius-2); border: 2px solid var(--sk-border); font-family: var(--sk-font-ui); font-size: 12px; text-align: center; }
+  .e0 { box-shadow: var(--sk-elev-0); }
+  .e1 { box-shadow: var(--sk-elev-1); }
+  .e2 { box-shadow: var(--sk-elev-2); }
+  .e3 { box-shadow: var(--sk-elev-3); }
+</style>
+</head>
+<body>
+  <h1 class="title">SPACING · RADIUS · ELEVATION</h1>
+  <p class="lede">A 4-px grid keeps everything pixel-aligned. Radii stay tight (0/2/4/6) so corners read as pixel chamfers, not soft web buttons.</p>
+
+  <h2>Spacing scale (4 px grid)</h2>
+  <div class="sp-row">
+    <div class="sp"><div class="bar" style="width:4px"></div><div class="lbl">4</div></div>
+    <div class="sp"><div class="bar" style="width:8px"></div><div class="lbl">8</div></div>
+    <div class="sp"><div class="bar" style="width:12px"></div><div class="lbl">12</div></div>
+    <div class="sp"><div class="bar" style="width:16px"></div><div class="lbl">16</div></div>
+    <div class="sp"><div class="bar" style="width:24px"></div><div class="lbl">24</div></div>
+    <div class="sp"><div class="bar" style="width:32px"></div><div class="lbl">32</div></div>
+    <div class="sp"><div class="bar" style="width:48px"></div><div class="lbl">48</div></div>
+    <div class="sp"><div class="bar" style="width:64px"></div><div class="lbl">64</div></div>
+  </div>
+
+  <h2>Radius scale</h2>
+  <div class="rad-row">
+    <div class="rad" style="border-radius:0">0 · pixel</div>
+    <div class="rad" style="border-radius:2px">2 · button</div>
+    <div class="rad" style="border-radius:4px">4 · panel</div>
+    <div class="rad" style="border-radius:6px">6 · max</div>
+  </div>
+
+  <h2>Elevation (hard pixel drops, never soft blur)</h2>
+  <div class="elev-row">
+    <div class="elev e0">elev-0<br><span style="color:var(--sk-fg-muted);font-size:10px">flat</span></div>
+    <div class="elev e1">elev-1<br><span style="color:var(--sk-fg-muted);font-size:10px">button</span></div>
+    <div class="elev e2">elev-2<br><span style="color:var(--sk-fg-muted);font-size:10px">card</span></div>
+    <div class="elev e3">elev-3<br><span style="color:var(--sk-fg-muted);font-size:10px">overlay</span></div>
+  </div>
+</body>
+</html>

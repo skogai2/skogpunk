@@ -1,0 +1,157 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="Terminal Kit" subtitle="BigBlueTerm437 NF — prompts, cursors, ANSI, composer" viewport="1280x1700" -->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Skogai Arcade — Terminal Kit</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<link rel="stylesheet" href="../components.css" />
+<link rel="stylesheet" href="../terminal.css" />
+<style>
+  html, body { margin: 0; padding: 0; }
+  body { padding: 32px; }
+  .wrap { max-width: 1180px; margin: 0 auto; }
+  .head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 32px; padding-bottom: 16px; border-bottom: 2px solid var(--sk-border); }
+  .head h1 { margin: 0; color: var(--sk-neon-green); text-shadow: var(--sk-glow-green); }
+  .head .sub { color: var(--sk-fg-muted); }
+  .section { margin-bottom: 36px; }
+  .section > h2 { color: var(--sk-fg-2); margin: 0 0 4px 0; }
+  .section > .lead { color: var(--sk-fg-muted); margin: 0 0 16px 0; max-width: 70ch; }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .panel { background: var(--sk-card); border: 1px solid var(--sk-border); border-radius: 4px; padding: 16px; }
+  .panel .lab { font-family: var(--sk-font-ui); font-size: 10px; color: var(--sk-fg-muted); margin-bottom: 8px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="head">
+    <h1 class="sk-h2">TERMINAL</h1>
+    <div class="sub sk-label">BigBlueTerm437 NF · prompts · cursors · ANSI · composer</div>
+  </header>
+
+  <!-- Window with scanlines -->
+  <section class="section">
+    <h2 class="sk-h3">Window — chrome + scanlines</h2>
+    <p class="lead sk-body-sm">Title bar, body, status bar. Optional CRT scanline overlay via <code class="sk-mono">.skt-scanlines</code>.</p>
+    <div class="skt-window">
+      <div class="skt-titlebar">
+        <div class="skt-dots"><span class="skt-dot r"></span><span class="skt-dot y"></span><span class="skt-dot g"></span></div>
+        <div class="skt-name">SUDO_HERO@cabinet-01</div>
+        <div class="skt-path">~/quests/firewall-boss</div>
+      </div>
+      <div class="skt-body skt-scanlines"><span class="skt-line"><span class="skt-prompt">▶</span><span class="skt-in">skogai status</span></span>
+<span class="skt-line skt-out">cabinet......... SUDO HERO</span>
+<span class="skt-line skt-out">uptime.......... 99.97%</span>
+<span class="skt-line"><span class="skt-tag ok">OK</span><span class="skt-ok">payload deployed</span></span>
+<span class="skt-line"><span class="skt-tag info">INFO</span><span class="skt-info">routing through wizards</span></span>
+<span class="skt-line"><span class="skt-tag warn">WARN</span><span class="skt-warn">latency above 80 ms</span></span>
+<span class="skt-line"><span class="skt-tag err">ERR</span><span class="skt-err">port 443 hammered (boss spawn)</span></span>
+<span class="skt-line"><span class="skt-prompt">▶</span><span class="skt-in">_</span><span class="skt-cursor"></span></span></div>
+      <div class="skt-statusbar">
+        <span class="skt-seg"></span>
+        <span class="skt-seg ok"> connected</span>
+        <span class="skt-seg"> firewall-boss</span>
+        <span class="skt-spacer"></span>
+        <span class="skt-seg"> 04:32</span>
+        <span class="skt-seg warn">⚡ boss</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Prompts + cursors -->
+  <section class="section">
+    <h2 class="sk-h3">Prompts &amp; cursors</h2>
+    <div class="row2">
+      <div class="panel">
+        <div class="lab">PROMPT VARIANTS</div>
+        <div class="skt"><span class="skt-line"><span class="skt-prompt">▶</span><span class="skt-in">deploy --quest=firewall-boss</span></span>
+<span class="skt-line"><span class="skt-prompt-cyan">$</span><span class="skt-in">wizards channel join #ops</span></span>
+<span class="skt-line"><span class="skt-prompt-violet">»</span><span class="skt-in">sudo patch kernel</span></span>
+<span class="skt-line"><span class="skt-prompt-yellow">⚡</span><span class="skt-in">honkers run --time-attack</span></span></div>
+      </div>
+      <div class="panel">
+        <div class="lab">CURSOR STYLES</div>
+        <div class="skt">
+<span class="skt-line"><span class="skt-prompt">▶</span><span class="skt-in">block</span><span class="skt-cursor"></span></span>
+<span class="skt-line"><span class="skt-prompt">▶</span><span class="skt-in">bar</span><span class="skt-cursor bar"></span></span>
+<span class="skt-line"><span class="skt-prompt">▶</span><span class="skt-in">underline</span><span class="skt-cursor underline"></span></span>
+<span class="skt-line"><span class="skt-prompt">▶</span><span class="skt-in">solid</span><span class="skt-cursor solid"></span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANSI palette -->
+  <section class="section">
+    <h2 class="sk-h3">ANSI 16</h2>
+    <p class="lead sk-body-sm">Mapped to the brand palette so terminal output never breaks the cabinet's tone.</p>
+    <div class="panel">
+      <div class="skt" style="color: var(--sk-fg); text-shadow: none;"><span class="skt-line"><span class="skt-ansi-red">red</span>  <span class="skt-ansi-green">green</span>  <span class="skt-ansi-yellow">yellow</span>  <span class="skt-ansi-blue">blue</span>  <span class="skt-ansi-magenta">magenta</span>  <span class="skt-ansi-cyan">cyan</span>  <span class="skt-ansi-white">white</span></span>
+<span class="skt-line"><span class="skt-ansi-bright-red">red+</span> <span class="skt-ansi-bright-green">green+</span> <span class="skt-ansi-bright-yellow">yellow+</span> <span class="skt-ansi-bright-blue">blue+</span> <span class="skt-ansi-bright-magenta">magenta+</span> <span class="skt-ansi-bright-cyan">cyan+</span> <span class="skt-ansi-bright-white">white+</span></span></div>
+    </div>
+  </section>
+
+  <!-- Composer -->
+  <section class="section">
+    <h2 class="sk-h3">Composer</h2>
+    <p class="lead sk-body-sm">Inline (single-line) and block (multi-line) composer. Both use the terminal face for caret-perfect echo.</p>
+    <div class="row2">
+      <div class="skt-window">
+        <div class="skt-titlebar"><div class="skt-name">single-line</div></div>
+        <div class="skt-body" style="min-height: 80px;"><span class="skt-line skt-dim"># type a command, press enter</span></div>
+        <div class="skt-composer">
+          <span class="skt-prompt">▶</span>
+          <input type="text" placeholder="help, ls, deploy, theme cyan…" />
+          <span class="skt-cursor bar"></span>
+        </div>
+      </div>
+      <div class="skt-window">
+        <div class="skt-titlebar"><div class="skt-name">multi-line</div></div>
+        <div class="skt-body" style="min-height: 80px;"><span class="skt-line skt-dim"># write a quest description</span></div>
+        <div class="skt-composer-block">
+          <div class="skt-row">
+            <span class="skt-prompt-cyan">$</span>
+            <textarea placeholder="A rogue daemon is hammering port 443…"></textarea>
+          </div>
+          <div class="skt-actions">
+            <button class="sk-btn sk-btn-ghost">⌘ ENTER · NEWLINE</button>
+            <button class="sk-btn sk-btn-secondary" style="margin-left: auto;">▶ RUN</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- File tree -->
+  <section class="section">
+    <h2 class="sk-h3">File tree (Nerd Font icons)</h2>
+    <p class="lead sk-body-sm">Glyphs come from BigBlueTerm437 NF — call them by Private Use Area codepoint via HTML entity.</p>
+    <div class="row2">
+      <div class="panel">
+        <div class="lab">PROJECT</div>
+        <div class="skt-tree">
+          <div class="row"><span class="icon folder">&#xf07b;</span><span>quests/</span></div>
+          <div class="row selected"><span class="indent"></span><span class="icon md">&#xf48a;</span><span>firewall-boss.md</span></div>
+          <div class="row"><span class="indent"></span><span class="icon md">&#xf48a;</span><span>kernel-patch.md</span></div>
+          <div class="row"><span class="icon folder">&#xf07b;</span><span>src/</span></div>
+          <div class="row"><span class="indent"></span><span class="icon ts">&#xe628;</span><span>app.ts</span></div>
+          <div class="row"><span class="indent"></span><span class="icon js">&#xe781;</span><span>boot.js</span></div>
+          <div class="row"><span class="indent"></span><span class="icon css">&#xe749;</span><span>theme.css</span></div>
+          <div class="row"><span class="indent"></span><span class="icon html">&#xe736;</span><span>index.html</span></div>
+          <div class="row"><span class="icon file">&#xf15b;</span><span>README.md</span></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="lab">GLYPH GALLERY</div>
+        <div class="skt" style="font-size: 24px; line-height: 1.6;"><span class="skt-line"><span class="skt-ansi-yellow">&#xf07b;</span> &#xf07c; <span class="skt-ansi-cyan">&#xe7a8;</span> &#xf02d; <span class="skt-ansi-magenta">&#xf09b;</span> &#xf013; <span class="skt-ansi-green">&#xf058;</span> <span class="skt-ansi-red">&#xf057;</span> <span class="skt-ansi-yellow">&#xf071;</span></span>
+<span class="skt-line">&#xe7c5; &#xe7a2; &#xe70c; &#xe73c; &#xe781; &#xe628; &#xe749; &#xe736;</span>
+<span class="skt-line">&#xf121; &#xf120; &#xf1d3; &#xf0c5; &#xf0e7; &#xf0a4; &#xf0a6; &#xf0a5;</span></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

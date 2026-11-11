@@ -1,0 +1,279 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="Sample Screen" subtitle="Sudo Hero mission select — assembled from primitives" viewport="1280x1200" -->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Skogai — Mission Select</title>
+<link rel="stylesheet" href="colors_and_type.css" />
+<link rel="stylesheet" href="components.css" />
+<style>
+  html, body { margin: 0; padding: 0; min-height: 100vh; }
+  body { padding: 24px; }
+  .shell {
+    max-width: 1180px; margin: 0 auto;
+    background: var(--sk-shell);
+    border: 2px solid var(--sk-border);
+    border-radius: var(--sk-radius-panel);
+    padding: 0;
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+  }
+
+  /* HEADER */
+  .topbar {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 24px;
+    align-items: center;
+    padding: 14px 20px;
+    background: var(--sk-bg-2);
+    border-bottom: 1px solid var(--sk-border);
+  }
+  .lockup { display: flex; align-items: center; gap: 12px; }
+  .avatar {
+    width: 40px; height: 40px;
+    background: #050810;
+    border-radius: 2px;
+    box-shadow: var(--sk-inset-violet);
+    display: grid; place-items: center;
+    font-family: var(--sk-font-display); font-size: 18px;
+    color: var(--sk-neon-violet); text-shadow: var(--sk-glow-violet);
+  }
+  .lockup .name { font-family: var(--sk-font-display); font-size: 14px; color: var(--sk-fg); }
+  .lockup .meta { font-family: var(--sk-font-ui); font-size: 10px; color: var(--sk-fg-muted); }
+  .topbar .center { text-align: center; }
+  .topbar .center .crumb { font-family: var(--sk-font-ui); font-size: 10px; color: var(--sk-fg-muted); }
+  .topbar .center .title { font-family: var(--sk-font-display); font-size: 14px; color: var(--sk-fg); }
+  .topbar .right { display: flex; gap: 8px; }
+
+  /* HERO */
+  .hero {
+    padding: 40px 32px 32px;
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 32px;
+    align-items: center;
+    background:
+      radial-gradient(circle at 18% 30%, rgba(178, 107, 255, 0.14), transparent 55%),
+      radial-gradient(circle at 90% 80%, rgba(255, 62, 160, 0.12), transparent 55%),
+      var(--sk-bg);
+    border-bottom: 1px solid var(--sk-border-soft);
+  }
+  .hero .eyebrow { font-family: var(--sk-font-ui); font-size: 12px; color: var(--sk-neon-cyan); text-shadow: var(--sk-glow-cyan); margin-bottom: 12px; }
+  .hero h1 { font-family: var(--sk-font-display); font-size: 36px; line-height: 1.15; margin: 0 0 16px 0; color: var(--sk-fg); }
+  .hero h1 .a { color: var(--sk-neon-magenta); text-shadow: var(--sk-glow-magenta); }
+  .hero p { font-family: var(--sk-font-body); font-size: 22px; color: var(--sk-fg-2); margin: 0 0 24px 0; max-width: 50ch; line-height: 1.4; }
+  .hero .row { display: flex; gap: 12px; align-items: center; }
+
+  /* mascot vignette (drawn) */
+  .mascot {
+    background: #050810;
+    border-radius: var(--sk-radius-panel);
+    box-shadow: var(--sk-inset-violet);
+    padding: 20px;
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
+  }
+  .mascot .stage {
+    width: 200px; height: 160px;
+    background:
+      linear-gradient(0deg, #1a0a30 0%, #1a0a30 30%, transparent 30%),
+      linear-gradient(180deg, #2a0f4a 0%, #08051a 100%);
+    position: relative;
+    border: 1px solid var(--sk-border-soft);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .mascot .stage::before {
+    content: ""; position: absolute; left: 50%; top: 30%;
+    width: 40px; height: 60px;
+    transform: translateX(-50%);
+    background: var(--sk-neon-violet);
+    box-shadow:
+      0 -8px 0 0 var(--sk-neon-violet),     /* head bump */
+      0 0 16px rgba(178, 107, 255, 0.6),
+      inset 4px 4px 0 0 #ff7ad9;
+    image-rendering: pixelated;
+  }
+  .mascot .stage::after {
+    content: "★"; position: absolute; right: 14px; top: 14px;
+    font-family: var(--sk-font-display); font-size: 12px;
+    color: var(--sk-neon-yellow); text-shadow: var(--sk-glow-yellow);
+  }
+  .mascot .bubble {
+    background: var(--sk-card);
+    border: 1px solid var(--sk-border);
+    border-radius: 4px;
+    padding: 10px 12px;
+    font-family: var(--sk-font-body); font-size: 18px;
+    color: var(--sk-fg);
+    text-align: center;
+  }
+  .mascot .bubble .who { font-family: var(--sk-font-ui); font-size: 10px; color: var(--sk-neon-violet); display: block; margin-bottom: 4px; }
+
+  /* CONTENT GRID */
+  .content { padding: 24px 32px; display: grid; gap: 24px; background: var(--sk-bg); }
+  .row-head { display: flex; justify-content: space-between; align-items: baseline; }
+  .row-head .h { font-family: var(--sk-font-display); font-size: 14px; color: var(--sk-fg-2); }
+  .row-head .meta { font-family: var(--sk-font-ui); font-size: 10px; color: var(--sk-fg-muted); }
+
+  .mission-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+  /* FOOTER */
+  .footer {
+    background: var(--sk-bg-2);
+    border-top: 1px solid var(--sk-border);
+    padding: 16px 20px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px; align-items: center;
+  }
+  .footer .summary { font-family: var(--sk-font-body); font-size: 18px; color: var(--sk-fg-2); }
+  .footer .summary ul { margin: 4px 0 0; padding-left: 18px; color: var(--sk-fg-muted); font-size: 16px; }
+  .footer .rank {
+    display: flex; align-items: center; gap: 14px;
+    background: #050810;
+    padding: 10px 16px;
+    border-radius: 4px;
+    box-shadow: var(--sk-inset-cyan);
+  }
+  .footer .rank .label { font-family: var(--sk-font-ui); font-size: 10px; color: var(--sk-fg-muted); }
+  .footer .rank .glyph { font-family: var(--sk-font-display); font-size: 32px; color: var(--sk-neon-yellow); text-shadow: var(--sk-glow-yellow); line-height: 1; }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- TOP -->
+  <header class="topbar">
+    <div class="lockup">
+      <div class="avatar">S</div>
+      <div>
+        <div class="name">SUDO_HERO</div>
+        <div class="meta">LV.42 · 12,750 XP</div>
+      </div>
+    </div>
+    <div class="center">
+      <div class="crumb">▸ SKOG.AI / CABINET 01</div>
+      <div class="title">SUDO HERO · MISSION SELECT</div>
+    </div>
+    <div class="right">
+      <button class="sk-btn sk-btn-ghost">⚙ OPTIONS</button>
+      <button class="sk-btn sk-btn-outline">▣ ONLINE</button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <div class="eyebrow">▸ DAILY QUEST · UNLOCKED 02H AGO</div>
+      <h1>DEFEAT THE <span class="a">FIREWALL BOSS</span></h1>
+      <p>A rogue daemon is hammering port 443. Patch the kernel, route the wizards through the back door, and pop the boss before the timer hits zero.</p>
+      <div class="row">
+        <button class="sk-btn sk-btn-primary">▶ START QUEST</button>
+        <button class="sk-btn sk-btn-ghost">DETAILS</button>
+        <span class="sk-badge sk-badge-warning">⚡ BOSS</span>
+      </div>
+    </div>
+    <div class="mascot">
+      <div class="stage"></div>
+      <div class="bubble">
+        <span class="who">SUDO_HERO</span>
+        Ready when you are.
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <section class="content">
+    <div class="row-head">
+      <div class="h">QUESTS</div>
+      <div class="meta">3 OF 8 COMPLETE TODAY</div>
+    </div>
+    <div class="mission-grid">
+      <div class="sk-card sk-card-default">
+        <div class="sk-card-eyebrow">▸ MISSION 01</div>
+        <h3 class="sk-card-title">PATCH THE KERNEL</h3>
+        <p class="sk-card-body">Three CVEs queued. Rebuild and redeploy without dropping uptime.</p>
+        <div class="sk-card-footer">
+          <span class="sk-meta">+250 XP</span>
+          <span class="sk-badge sk-badge-success">✓ DONE</span>
+        </div>
+      </div>
+      <div class="sk-card sk-card-raised">
+        <div class="sk-card-eyebrow">▸ MISSION 02</div>
+        <h3 class="sk-card-title">DEFEAT FIREWALL BOSS</h3>
+        <p class="sk-card-body">Active boss spawn. ETA two minutes. Bring backup or roll solo.</p>
+        <div class="sk-card-footer">
+          <span class="sk-meta">REWARD · 2,500 XP</span>
+          <button class="sk-btn sk-btn-primary">▶ START</button>
+        </div>
+      </div>
+      <div class="sk-card sk-card-default" style="opacity: 0.6;">
+        <div class="sk-card-eyebrow" style="color: var(--sk-fg-muted); text-shadow: none;">▸ MISSION 03</div>
+        <h3 class="sk-card-title">DEPLOY TO PROD</h3>
+        <p class="sk-card-body">Locked. Reach LV.45 to unlock the production cabinet.</p>
+        <div class="sk-card-footer">
+          <span class="sk-meta">UNLOCK AT LV.45</span>
+          <span class="sk-badge sk-badge-muted">🔒 LOCKED</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row-head">
+      <div class="h">ACTIVE QUEST STRIP</div>
+      <div class="meta">PINNED TO HUD</div>
+    </div>
+    <div class="sk-quest-strip">
+      <div class="sk-quest sk-quest-done">
+        <div class="sk-quest-icon">✓</div>
+        <div class="sk-quest-body">
+          <div class="sk-quest-title">PATCH KERNEL</div>
+          <div class="sk-quest-meta">+250 XP · 00:42</div>
+        </div>
+      </div>
+      <div class="sk-quest sk-quest-active">
+        <div class="sk-quest-icon">⚡</div>
+        <div class="sk-quest-body">
+          <div class="sk-quest-title">DEFEAT FIREWALL</div>
+          <div class="sk-quest-progress"><div style="width: 62%"></div></div>
+          <div class="sk-quest-meta">62% · ETA 02:18</div>
+        </div>
+      </div>
+      <div class="sk-quest sk-quest-locked">
+        <div class="sk-quest-icon">🔒</div>
+        <div class="sk-quest-body">
+          <div class="sk-quest-title">DEPLOY TO PROD</div>
+          <div class="sk-quest-meta">UNLOCK AT LV.45</div>
+        </div>
+      </div>
+    </div>
+
+    <pre class="sk-terminal-block">$ skogai status
+&gt; cabinet......... SUDO HERO
+&gt; uptime.......... 99.97%
+&gt; active quest.... firewall-boss [62%]
+&gt; READY.</pre>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="summary">
+      TODAY'S RUN
+      <ul>
+        <li>3 of 8 quests cleared · 0 deaths · 1 boss queued</li>
+        <li>Personal best streak — keep it alive.</li>
+      </ul>
+    </div>
+    <div class="rank">
+      <div>
+        <div class="label">RANK</div>
+        <div class="sk-meta" style="margin-top: 2px;">DAILY</div>
+      </div>
+      <div class="glyph">S+</div>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

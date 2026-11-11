@@ -1,0 +1,21 @@
+{
+  "id": "router-rescue",
+  "title": "Router rescue",
+  "cabinet": "wifi-wizards",
+  "steps": [
+    {
+      "kind": "choice",
+      "prompt": "The wifi drops every evening. Which command shows who is hogging the network?",
+      "choices": ["ping 8.8.8.8", "arp -a", "rm -rf /etc/network", "echo fast > /dev/wifi"],
+      "answer": 1,
+      "xp": 120
+    },
+    {
+      "kind": "text",
+      "prompt": "Type the address most home routers answer on.",
+      "match": "^(https?://)?192\\.168\\.(0|1)\\.1/?$",
+      "hint": "192.168.1.1",
+      "xp": 180
+    }
+  ]
+}

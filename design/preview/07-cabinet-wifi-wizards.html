@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Cabinet · Wi-Fi Wizards</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  body { margin: 0; padding: 32px; background: var(--sk-bg); }
+  .cabinet { max-width: 1100px; margin: 0 auto; }
+  .hud { display:grid; grid-template-columns: 48px 1fr auto; gap:16px; align-items:center;
+    background: var(--sk-bg-2); padding: 12px 16px; border:2px solid var(--sk-border-soft); border-radius: 4px; margin-bottom: 16px; }
+  .hud .avatar { width:48px;height:48px; background: var(--sk-neon-cyan); border:2px solid #00303f; box-shadow: var(--sk-glow-cyan); }
+  .hud .name { font-family: var(--sk-font-display); font-size: 14px; }
+  .hud .sub { font-family: var(--sk-font-body); font-size: 18px; color: var(--sk-fg-muted); }
+  .party { display:flex; gap: 6px; }
+  .party span { width: 26px; height: 26px; background: var(--sk-card); border: 2px solid var(--sk-neon-cyan); }
+  .party span.you { background: var(--sk-neon-cyan); box-shadow: var(--sk-glow-cyan); }
+  .party span.mage { background: var(--sk-neon-magenta); border-color: var(--sk-neon-magenta); }
+  .party span.empty { background: var(--sk-bg); border-style: dashed; }
+
+  .stage { height: 320px; position: relative; overflow:hidden; border-radius: 4px; border:2px solid var(--sk-border);
+    background:
+      radial-gradient(ellipse at 50% 30%, rgba(78,226,255,.25), transparent 60%),
+      radial-gradient(ellipse at 30% 80%, rgba(255,62,160,.18), transparent 60%),
+      linear-gradient(180deg, #08081a 0%, #10183a 60%, #1a2a55 100%);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .grid-floor { position:absolute; inset:60% 0 0 0;
+    background-image: linear-gradient(var(--sk-neon-cyan) 1px, transparent 1px), linear-gradient(90deg, var(--sk-neon-cyan) 1px, transparent 1px);
+    background-size: 40px 30px;
+    transform: perspective(400px) rotateX(50deg);
+    transform-origin: top;
+    opacity: .35;
+  }
+  .marquee { position:relative; z-index:2; text-align:center; }
+  .marquee .label { font-family: var(--sk-font-ui); font-size: 12px; color: var(--sk-fg-muted); letter-spacing: .12em; }
+  .marquee .title { font-family: var(--sk-font-display); font-size: 44px; line-height: 1.1; margin: 12px 0 4px;
+    color: var(--sk-neon-cyan); text-shadow: var(--sk-glow-cyan); }
+  .marquee .amp { color: var(--sk-neon-magenta); text-shadow: var(--sk-glow-magenta); }
+  .marquee .sub { font-family: var(--sk-font-body); font-size: 22px; color: var(--sk-fg-2); }
+
+  .row3 { display:grid; grid-template-columns: repeat(3,1fr); gap:12px; margin-top:16px; }
+  .channel { background: var(--sk-card); border:2px solid var(--sk-border-soft); border-radius:4px; padding:14px; }
+  .channel .head { display:flex; justify-content:space-between; align-items:center; }
+  .channel .name { font-family: var(--sk-font-ui); font-size: 14px; }
+  .channel .strength { font-family: var(--sk-font-mono); font-size: 12px; color: var(--sk-neon-cyan); }
+  .bars { display:flex; gap:3px; align-items:flex-end; height: 36px; margin-top: 8px; }
+  .bars span { width: 8px; background: var(--sk-neon-cyan); box-shadow: var(--sk-glow-cyan); }
+  .channel .meta { font-family: var(--sk-font-body); font-size: 16px; color: var(--sk-fg-muted); margin-top: 8px; }
+
+  .dialog-row { display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-top: 16px; }
+  .dialog { background: var(--sk-card); padding:14px; border:2px solid var(--sk-border); border-radius:4px;
+    display:grid; grid-template-columns: 56px 1fr; gap:12px; position: relative; }
+  .dialog::before { content:""; position:absolute; left:56px; top:-8px; border:8px solid transparent; border-bottom-color: var(--sk-border); }
+  .dialog .portrait { width:56px;height:56px; border:2px solid #003040; }
+  .dialog.cyan .portrait { background: var(--sk-neon-cyan); }
+  .dialog.mag  .portrait { background: var(--sk-neon-magenta); border-color:#3a0820; }
+  .dialog .speaker { font-family: var(--sk-font-ui); font-size: 11px; color: var(--sk-neon-cyan); }
+  .dialog.mag .speaker { color: var(--sk-neon-magenta); }
+  .dialog .body { font-family: var(--sk-font-body); font-size: 19px; color: var(--sk-fg); }
+</style>
+</head>
+<body>
+  <div class="cabinet">
+    <div class="hud">
+      <div class="avatar"></div>
+      <div><div class="name">SKOGAI &amp; PARTY</div><div class="sub">Channel 7 · 4 of 4 wizards online</div></div>
+      <div class="party">
+        <span class="you"></span><span class="mage"></span><span class="mage"></span><span></span><span class="empty"></span>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="grid-floor"></div>
+      <div class="marquee">
+        <div class="label">CABINET 02</div>
+        <div class="title">SKOGAI <span class="amp">&amp;</span> WI-FI WIZARDS</div>
+        <div class="sub">Convene the network. Cast the patch.</div>
+      </div>
+    </div>
+
+    <div class="row3">
+      <div class="channel">
+        <div class="head"><span class="name">Channel 1</span><span class="strength">−42 dBm</span></div>
+        <div class="bars"><span style="height:8px"></span><span style="height:14px"></span><span style="height:22px"></span><span style="height:30px;background:var(--sk-neon-magenta);box-shadow:var(--sk-glow-magenta)"></span></div>
+        <div class="meta">Stable · 4 wizards casting</div>
+      </div>
+      <div class="channel">
+        <div class="head"><span class="name">Channel 6</span><span class="strength">−61 dBm</span></div>
+        <div class="bars"><span style="height:8px"></span><span style="height:14px"></span><span style="height:22px"></span><span style="height:14px;background:var(--sk-fg-muted);box-shadow:none"></span></div>
+        <div class="meta">Crowded · interference</div>
+      </div>
+      <div class="channel">
+        <div class="head"><span class="name">Channel 11</span><span class="strength">−38 dBm</span></div>
+        <div class="bars"><span style="height:14px"></span><span style="height:22px"></span><span style="height:30px"></span><span style="height:36px;background:var(--sk-neon-magenta);box-shadow:var(--sk-glow-magenta)"></span></div>
+        <div class="meta">Open · ready to ritualize</div>
+      </div>
+    </div>
+
+    <div class="dialog-row">
+      <div class="dialog cyan"><div class="portrait"></div><div><div class="speaker">VIOLET</div><div class="body">Channel 11 is wide open. I'll prepare the routing rune.</div></div></div>
+      <div class="dialog mag"><div class="portrait"></div><div><div class="speaker">PINKWAVE</div><div class="body">Stand back from the antenna — this one bites.</div></div></div>
+    </div>
+  </div>
+</body>
+</html>

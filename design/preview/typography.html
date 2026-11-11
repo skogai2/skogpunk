@@ -1,0 +1,197 @@
+<!doctype html>
+<!-- @dsCard group="Type" name="Typography" subtitle="Press Start 2P + VT323 + Silkscreen" viewport="1280x1800" -->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Skogai Arcade — Typography</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  html, body { margin: 0; padding: 0; }
+  body { padding: 32px; }
+  .wrap { max-width: 1280px; margin: 0 auto; }
+  .head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 32px; padding-bottom: 16px; border-bottom: 2px solid var(--sk-border); }
+  .head h1 { margin: 0; color: var(--sk-neon-cyan); text-shadow: var(--sk-glow-cyan); }
+  .head .sub { color: var(--sk-fg-muted); }
+
+  .section { margin-bottom: 40px; }
+  .section > h2 { color: var(--sk-fg-2); margin: 0 0 4px 0; }
+  .section > .lead { color: var(--sk-fg-muted); margin: 0 0 20px 0; }
+
+  /* family cards */
+  .families { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .families .fam:nth-child(3) { grid-column: span 2; }
+  .fam {
+    background: var(--sk-card);
+    border: 1px solid var(--sk-border);
+    border-radius: var(--sk-radius-panel);
+    padding: 24px;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .fam .meta-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 1px dashed var(--sk-border-soft); padding-bottom: 8px;
+  }
+  .fam .role-name { font-family: var(--sk-font-display); font-size: 12px; color: var(--sk-neon-violet); }
+  .fam .family-name { font-family: var(--sk-font-mono); font-size: 11px; color: var(--sk-fg-muted); }
+  .fam .big { line-height: 1.0; color: var(--sk-fg); margin: 8px 0; }
+  .fam .alphabet { color: var(--sk-fg-2); }
+  .fam .pangram { color: var(--sk-fg-muted); }
+  .fam .use { font-family: var(--sk-font-ui); font-size: 12px; color: var(--sk-neon-cyan); margin-top: 4px; }
+
+  /* Type scale */
+  .scale-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--sk-card);
+    border: 1px solid var(--sk-border);
+    border-radius: var(--sk-radius-panel);
+    overflow: hidden;
+  }
+  .scale-table tr { border-bottom: 1px solid var(--sk-border-soft); }
+  .scale-table tr:last-child { border-bottom: 0; }
+  .scale-table td { padding: 14px 18px; vertical-align: middle; }
+  .scale-table td.role { font-family: var(--sk-font-ui); font-size: 12px; color: var(--sk-fg-muted); width: 160px; }
+  .scale-table td.size { font-family: var(--sk-font-mono); font-size: 12px; color: var(--sk-fg-muted); width: 80px; text-align: right; }
+  .scale-table td.sample { color: var(--sk-fg); }
+  .scale-table td.spec { font-family: var(--sk-font-mono); font-size: 11px; color: var(--sk-fg-muted); width: 220px; }
+
+  /* hierarchy demo */
+  .demo {
+    background: var(--sk-bg-2);
+    border: 1px solid var(--sk-border);
+    border-radius: var(--sk-radius-panel);
+    padding: 32px;
+  }
+  .demo .eyebrow { font-family: var(--sk-font-ui); font-size: 10px; color: var(--sk-neon-cyan); letter-spacing: 0.05em; margin-bottom: 12px; }
+  .demo .title { font-family: var(--sk-font-display); font-size: 40px; color: var(--sk-fg); line-height: 1.1; margin: 0 0 16px 0; }
+  .demo .title .accent { color: var(--sk-neon-magenta); text-shadow: var(--sk-glow-magenta); }
+  .demo .lede { font-family: var(--sk-font-body); font-size: 22px; color: var(--sk-fg-2); margin: 0 0 24px 0; max-width: 60ch; }
+  .demo .body { font-family: var(--sk-font-body); font-size: 18px; color: var(--sk-fg-2); max-width: 60ch; line-height: 1.5; }
+  .demo .terminal {
+    margin-top: 24px; padding: 14px 16px;
+    background: #050810; border: 1px solid #14352a; border-radius: 4px;
+    font-family: var(--sk-font-body); font-size: 18px; color: var(--sk-neon-green);
+    text-shadow: var(--sk-glow-green);
+  }
+
+  /* glow row */
+  .glows { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+  .glow {
+    background: var(--sk-bg);
+    border: 1px solid var(--sk-border-soft);
+    border-radius: var(--sk-radius-panel);
+    padding: 28px 16px;
+    text-align: center;
+  }
+  .glow .word { font-family: var(--sk-font-display); font-size: 22px; line-height: 1; }
+  .glow .label { font-family: var(--sk-font-ui); font-size: 10px; color: var(--sk-fg-muted); margin-top: 12px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="head">
+    <h1 class="sk-h2">TYPE</h1>
+    <div class="sub sk-label">Pixel display + CRT body, no smoothing</div>
+  </header>
+
+  <!-- ============ Families ============ -->
+  <section class="section">
+    <h2 class="sk-h3">Families</h2>
+    <p class="lead sk-body-sm">Three families, each with one job.</p>
+    <div class="families">
+      <div class="fam">
+        <div class="meta-row">
+          <div class="role-name">DISPLAY</div>
+          <div class="family-name">Press Start 2P · 8-bit</div>
+        </div>
+        <div class="big sk-display" style="font-size: 36px;">PIXEL POWER</div>
+        <div class="alphabet sk-display" style="font-size: 14px;">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 0 1 2 3 4 5 6 7 8 9</div>
+        <div class="use">Use for: titles, scores, mission names, marquee headlines.</div>
+      </div>
+      <div class="fam">
+        <div class="meta-row">
+          <div class="role-name">UI / CHROME</div>
+          <div class="family-name">Silkscreen · taller pixel</div>
+        </div>
+        <div class="big sk-ui" style="font-size: 36px;">SUDO START</div>
+        <div class="alphabet sk-ui" style="font-size: 14px;">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 0 1 2 3 4 5 6 7 8 9</div>
+        <div class="use">Use for: buttons, tabs, labels, badges, navigation.</div>
+      </div>
+      <div class="fam">
+        <div class="meta-row">
+          <div class="role-name">BODY / TERMINAL</div>
+          <div class="family-name">VT323 · CRT</div>
+        </div>
+        <div class="big sk-body" style="font-size: 38px; line-height: 1;">Hack the planet,<br/>then ship it.</div>
+        <div class="alphabet sk-body" style="font-size: 22px;">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z &nbsp; 0 1 2 3 4 5 6 7 8 9</div>
+        <div class="use">Use for: paragraphs, descriptions, dialog, terminal output.</div>
+      </div>
+      <div class="fam">
+        <div class="meta-row">
+          <div class="role-name">TERMINAL · BRAND</div>
+          <div class="family-name">BigBlueTerm437 NF · IBM PC + Nerd icons</div>
+        </div>
+        <div class="big sk-term" style="font-size: 32px; color: var(--sk-neon-green); text-shadow: var(--sk-glow-green); line-height: 1.1;">$ skog.ai &gt; _<br/>     packets</div>
+        <div class="alphabet sk-term" style="font-size: 18px;">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 0 1 2 3 4 5 6 7 8 9 [ ] { } &lt; &gt; / \ | ~ * &amp;</div>
+        <div class="sk-term" style="font-size: 22px; color: var(--sk-neon-cyan); text-shadow: var(--sk-glow-cyan);">&#xe7a8; &#xf02d; &#xf07b; &#xf121; &#xf1d3; &#xf09b; &#xf013; &#xf0c5; &#xf071; &#xf058;</div>
+        <div class="use">Use for: terminal emulator, command prompts, file trees, status bars. Nerd Font icons live in the Private Use Area — call them by codepoint.</div>
+      </div>
+      <div class="fam">
+        <div class="meta-row">
+          <div class="role-name">MONO / CODE</div>
+          <div class="family-name">JetBrains Mono</div>
+        </div>
+        <div class="big sk-mono" style="font-size: 24px;">$ skogai run --quest</div>
+        <div class="alphabet sk-mono" style="font-size: 13px;">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 0 1 2 3 4 5 6 7 8 9</div>
+        <div class="use">Use for: code blocks, paths, technical values, diagnostics outside the terminal canvas.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Type scale ============ -->
+  <section class="section">
+    <h2 class="sk-h3">Scale</h2>
+    <p class="lead sk-body-sm">Snap to 2px. Pixel display caps fall around 60px; body never below 18px (10–12px reserved for chrome labels).</p>
+    <table class="scale-table">
+      <tr><td class="role">H1 / Display</td><td class="sample sk-display" style="font-size: 60px;">SKOGAI</td><td class="size">60 / 1.1</td><td class="spec">Press Start 2P · marquee</td></tr>
+      <tr><td class="role">H2 / Page title</td><td class="sample sk-display" style="font-size: 40px;">MISSION SELECT</td><td class="size">40 / 1.1</td><td class="spec">Press Start 2P</td></tr>
+      <tr><td class="role">H3 / Section</td><td class="sample sk-display" style="font-size: 24px;">QUESTS</td><td class="size">24 / 1.2</td><td class="spec">Press Start 2P</td></tr>
+      <tr><td class="role">H4 / Card title</td><td class="sample sk-ui" style="font-size: 16px;">DEPLOY TO PROD</td><td class="size">16 / 1.2</td><td class="spec">Silkscreen</td></tr>
+      <tr><td class="role">Body / large</td><td class="sample sk-body" style="font-size: 24px;">Patch the firewall before the boss spawns.</td><td class="size">24 / 1.4</td><td class="spec">VT323</td></tr>
+      <tr><td class="role">Body / default</td><td class="sample sk-body" style="font-size: 20px;">Patch the firewall before the boss spawns.</td><td class="size">20 / 1.4</td><td class="spec">VT323</td></tr>
+      <tr><td class="role">Body / small</td><td class="sample sk-body" style="font-size: 18px;">Patch the firewall before the boss spawns.</td><td class="size">18 / 1.5</td><td class="spec">VT323 — body floor</td></tr>
+      <tr><td class="role">Label</td><td class="sample sk-ui" style="font-size: 12px; color: var(--sk-fg-2);">SCORE · 04:32 · ROUND 7</td><td class="size">12 / 1.2</td><td class="spec">Silkscreen — chrome</td></tr>
+      <tr><td class="role">Meta / caption</td><td class="sample sk-ui" style="font-size: 10px; color: var(--sk-fg-muted);">PLAYER LV.42 · BUILD 0.9.7</td><td class="size">10 / 1.2</td><td class="spec">Silkscreen — quietest</td></tr>
+    </table>
+  </section>
+
+  <!-- ============ Hierarchy demo ============ -->
+  <section class="section">
+    <h2 class="sk-h3">Hierarchy in context</h2>
+    <p class="lead sk-body-sm">Display-pixel for the title, CRT for body, mono for terminal. Accents are sparse.</p>
+    <div class="demo">
+      <div class="eyebrow">▸ MISSION 03 · DAILY QUEST</div>
+      <div class="title">DEFEAT THE <span class="accent">FIREWALL BOSS</span></div>
+      <div class="lede">A rogue daemon is hammering port 443. Patch the kernel, route the Wi-Fi Wizards through the back door, and pop the boss before the timer hits zero.</div>
+      <div class="body">Use sparse neon accents on the title only. Body copy stays in the secondary foreground tone — bright enough to read on a dark cabinet, calm enough to never compete with the score plaque.</div>
+      <div class="terminal">$ skogai deploy --quest=firewall-boss<br/>&gt; loading payload...........[OK]<br/>&gt; ROUTING THROUGH WIZARDS....[OK]</div>
+    </div>
+  </section>
+
+  <!-- ============ Glow utilities ============ -->
+  <section class="section">
+    <h2 class="sk-h3">Neon glow utilities</h2>
+    <p class="lead sk-body-sm">Reserved for marquee headlines, primary CTAs, and score readouts. Never on body copy.</p>
+    <div class="glows">
+      <div class="glow"><div class="word sk-glow-magenta">START</div><div class="label">.sk-glow-magenta</div></div>
+      <div class="glow"><div class="word sk-glow-violet">HERO</div><div class="label">.sk-glow-violet</div></div>
+      <div class="glow"><div class="word sk-glow-cyan">WI-FI</div><div class="label">.sk-glow-cyan</div></div>
+      <div class="glow"><div class="word sk-glow-green">OK</div><div class="label">.sk-glow-green</div></div>
+      <div class="glow"><div class="word sk-glow-yellow">S+</div><div class="label">.sk-glow-yellow</div></div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

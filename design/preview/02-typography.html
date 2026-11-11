@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Skogai Arcade — Typography</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  body { margin: 0; padding: 40px; max-width: 1080px; }
+  .row { display: grid; grid-template-columns: 140px 1fr 200px; gap: 16px; align-items: baseline;
+         padding: 16px 0; border-bottom: 1px solid var(--sk-border-soft); }
+  .role { font-family: var(--sk-font-ui); font-size: 11px; color: var(--sk-fg-muted); text-transform: uppercase; letter-spacing: .08em; }
+  .spec { font-family: var(--sk-font-mono); font-size: 12px; color: var(--sk-fg-muted); text-align: right; }
+  h1.title { font-family: var(--sk-font-display); font-size: 28px; color: var(--sk-neon-cyan); text-shadow: var(--sk-glow-cyan); margin: 0 0 8px; }
+  p.lede { font-family: var(--sk-font-body); font-size: 18px; color: var(--sk-fg-2); margin: 0 0 32px; max-width: 60ch; }
+  .families { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 32px; }
+  .fam { padding: 20px; background: var(--sk-card); border: 1px solid var(--sk-border-soft); border-radius: var(--sk-radius-2); }
+  .fam .name { font-family: var(--sk-font-ui); font-size: 11px; color: var(--sk-fg-muted); text-transform: uppercase; letter-spacing: .08em; }
+  .fam .demo { margin-top: 10px; }
+  .demo-display { font-family: var(--sk-font-display); font-size: 22px; color: var(--sk-neon-magenta); text-shadow: var(--sk-glow-magenta); }
+  .demo-ui      { font-family: var(--sk-font-ui); font-size: 18px; color: var(--sk-fg); text-transform: uppercase; letter-spacing: .04em; }
+  .demo-body    { font-family: var(--sk-font-body); font-size: 22px; color: var(--sk-fg); }
+  .demo-mono    { font-family: var(--sk-font-mono); font-size: 14px; color: var(--sk-neon-green); }
+</style>
+</head>
+<body>
+  <h1 class="title">TYPOGRAPHY</h1>
+  <p class="lede">Three pixel/CRT families, three jobs. Display is loud and rare; UI is the workhorse; body keeps reading comfortable.</p>
+
+  <div class="families">
+    <div class="fam">
+      <div class="name">Display — Press Start 2P</div>
+      <div class="demo demo-display">MISSION COMPLETE</div>
+    </div>
+    <div class="fam">
+      <div class="name">UI / Chrome — Silkscreen</div>
+      <div class="demo demo-ui">Save settings · Lv. 14 · Quest log</div>
+    </div>
+    <div class="fam">
+      <div class="name">Body / Dialog — VT323</div>
+      <div class="demo demo-body">A new contract just hit the wire. Something about a goose.</div>
+    </div>
+    <div class="fam">
+      <div class="name">Mono / Technical — JetBrains Mono</div>
+      <div class="demo demo-mono">$ skogai run --cabinet=sudo-hero --rank=S+</div>
+    </div>
+  </div>
+
+  <h2 class="sk-ui" style="font-size:12px;color:var(--sk-fg-muted);margin:0 0 8px;">Type scale</h2>
+
+  <div class="row"><div class="role">Marquee</div><div style="font-family:var(--sk-font-display); font-size:60px; color:var(--sk-neon-magenta); text-shadow:var(--sk-glow-magenta); line-height:1.1;">S+</div><div class="spec">Press Start 2P · 60</div></div>
+  <div class="row"><div class="role">Hero title</div><div style="font-family:var(--sk-font-display); font-size:32px; line-height:1.2;">SUDO HERO</div><div class="spec">Press Start 2P · 32</div></div>
+  <div class="row"><div class="role">Section title</div><div style="font-family:var(--sk-font-display); font-size:20px;">Quest log</div><div class="spec">Press Start 2P · 20</div></div>
+  <div class="row"><div class="role">UI label lg</div><div class="sk-ui" style="font-size:16px;">Start mission</div><div class="spec">Silkscreen · 16</div></div>
+  <div class="row"><div class="role">UI label</div><div class="sk-ui" style="font-size:14px;">Inventory</div><div class="spec">Silkscreen · 14</div></div>
+  <div class="row"><div class="role">UI label sm</div><div class="sk-ui" style="font-size:12px;">Lv. 14</div><div class="spec">Silkscreen · 12</div></div>
+  <div class="row"><div class="role">Body</div><div style="font-family:var(--sk-font-body); font-size:20px;">The neon flickers as the goose lands on the rooftop.</div><div class="spec">VT323 · 20</div></div>
+  <div class="row"><div class="role">Body sm</div><div style="font-family:var(--sk-font-body); font-size:18px; color:var(--sk-fg-2);">Press start to begin a new run.</div><div class="spec">VT323 · 18</div></div>
+  <div class="row"><div class="role">Metadata</div><div class="sk-ui" style="font-size:10px; color:var(--sk-fg-muted);">Updated 12s ago</div><div class="spec">Silkscreen · 10</div></div>
+  <div class="row"><div class="role">Mono</div><div style="font-family:var(--sk-font-mono); font-size:14px; color:var(--sk-neon-green);">user_id: 0x4A2F</div><div class="spec">JetBrains Mono · 14</div></div>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Skogai Arcade — Iconography</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  body { margin: 0; padding: 40px; max-width: 1080px; }
+  h1.title { font-family: var(--sk-font-display); font-size: 24px; color: var(--sk-neon-cyan); text-shadow: var(--sk-glow-cyan); margin: 0 0 8px; }
+  p.lede { font-family: var(--sk-font-body); font-size: 18px; color: var(--sk-fg-2); margin: 0 0 24px; max-width: 60ch; }
+  h2 { font-family: var(--sk-font-ui); font-size: 12px; color: var(--sk-fg-muted); text-transform: uppercase; letter-spacing: .08em; margin: 28px 0 12px; }
+
+  .grid {
+    display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px;
+  }
+  .cell {
+    background: var(--sk-card); border: 1px solid var(--sk-border-soft);
+    border-radius: var(--sk-radius-2); padding: 16px 8px;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+  }
+  .cell svg { width: 32px; height: 32px; color: var(--sk-fg); image-rendering: pixelated; }
+  .cell .lbl { font-family: var(--sk-font-ui); font-size: 9px; color: var(--sk-fg-muted); text-transform: uppercase; letter-spacing: .06em; }
+
+  .states { display:grid; grid-template-columns: repeat(4, 1fr); gap:12px; }
+  .state {
+    background: var(--sk-card); padding: 16px; border-radius: var(--sk-radius-2);
+    border: 1px solid var(--sk-border-soft);
+    display:flex; flex-direction: column; gap:8px; align-items:center;
+  }
+  .state svg { width:40px;height:40px; image-rendering: pixelated; }
+  .state .name { font-family: var(--sk-font-ui); font-size: 10px; color: var(--sk-fg-muted); text-transform: uppercase; }
+
+  .sizes { display:flex; align-items:center; gap:24px; padding: 16px; background: var(--sk-card); border-radius: var(--sk-radius-2); border:1px solid var(--sk-border-soft); }
+  .sizes svg { color: var(--sk-neon-yellow); image-rendering: pixelated; }
+</style>
+</head>
+<body>
+  <h1 class="title">ICONOGRAPHY</h1>
+  <p class="lede">Pixel-first. Drawn on a 16×16 grid with crisp square pixels — no stroke icons, no soft anti-aliased curves. Icons inherit <code style="font-family:var(--sk-font-mono);color:var(--sk-neon-green)">currentColor</code> and pick up cabinet glow when active.</p>
+
+  <h2>System set</h2>
+  <div class="grid">
+    <div class="cell"><svg><use href="../assets/icons.svg#sk-coin"/></svg><span class="lbl">coin</span></div>
+    <div class="cell"><svg><use href="../assets/icons.svg#sk-heart"/></svg><span class="lbl">heart</span></div>
+    <div class="cell"><svg><use href="../assets/icons.svg#sk-star"/></svg><span class="lbl">star</span></div>
+    <div class="cell"><svg><use href="../assets/icons.svg#sk-diamond"/></svg><span class="lbl">diamond</span></div>
+    <div class="cell"><svg><use href="../assets/icons.svg#sk-check"/></svg><span class="lbl">check</span></div>
+    <div class="cell"><svg><use href="../assets/icons.svg#sk-play"/></svg><span class="lbl">play</span></div>
+    <div class="cell"><svg><use href="../assets/icons.svg#sk-pause"/></svg><span class="lbl">pause</span></div>
+    <div class="cell"><svg><use href="../assets/icons.svg#sk-sword"/></svg><span class="lbl">sword</span></div>
+    <div class="cell"><svg><use href="../assets/icons.svg#sk-shield"/></svg><span class="lbl">shield</span></div>
+    <div class="cell"><svg><use href="../assets/icons.svg#sk-key"/></svg><span class="lbl">key</span></div>
+    <div class="cell"><svg><use href="../assets/icons.svg#sk-chest"/></svg><span class="lbl">chest</span></div>
+    <div class="cell"><svg><use href="../assets/icons.svg#sk-wifi"/></svg><span class="lbl">wifi</span></div>
+    <div class="cell"><svg><use href="../assets/icons.svg#sk-signal"/></svg><span class="lbl">signal</span></div>
+    <div class="cell"><svg><use href="../assets/icons.svg#sk-chip"/></svg><span class="lbl">chip</span></div>
+    <div class="cell"><svg><use href="../assets/icons.svg#sk-power"/></svg><span class="lbl">power</span></div>
+    <div class="cell"><svg><use href="../assets/icons.svg#sk-chevron-right"/></svg><span class="lbl">chevron</span></div>
+    <div class="cell"><svg><use href="../assets/icons.svg#sk-cursor"/></svg><span class="lbl">cursor</span></div>
+    <div class="cell"><svg><use href="../assets/icons.svg#sk-ghost"/></svg><span class="lbl">ghost</span></div>
+    <div class="cell"><svg><use href="../assets/icons.svg#sk-trophy"/></svg><span class="lbl">trophy</span></div>
+  </div>
+
+  <h2>States — inherit currentColor + cabinet glow</h2>
+  <div class="states">
+    <div class="state" style="color:var(--sk-fg-muted)"><svg><use href="../assets/icons.svg#sk-star"/></svg><span class="name">Inactive</span></div>
+    <div class="state" style="color:var(--sk-neon-violet); filter: drop-shadow(0 0 4px var(--sk-neon-violet))"><svg><use href="../assets/icons.svg#sk-star"/></svg><span class="name">Sudo Hero</span></div>
+    <div class="state" style="color:var(--sk-neon-cyan); filter: drop-shadow(0 0 4px var(--sk-neon-cyan))"><svg><use href="../assets/icons.svg#sk-star"/></svg><span class="name">Wi-Fi Wizards</span></div>
+    <div class="state" style="color:var(--sk-neon-magenta); filter: drop-shadow(0 0 4px var(--sk-neon-magenta))"><svg><use href="../assets/icons.svg#sk-star"/></svg><span class="name">Honkers</span></div>
+  </div>
+
+  <h2>Sizes</h2>
+  <div class="sizes">
+    <svg width="16" height="16"><use href="../assets/icons.svg#sk-coin"/></svg>
+    <svg width="24" height="24"><use href="../assets/icons.svg#sk-coin"/></svg>
+    <svg width="32" height="32"><use href="../assets/icons.svg#sk-coin"/></svg>
+    <svg width="48" height="48"><use href="../assets/icons.svg#sk-coin"/></svg>
+    <svg width="64" height="64"><use href="../assets/icons.svg#sk-coin"/></svg>
+  </div>
+</body>
+</html>

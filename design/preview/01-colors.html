@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Skogai Arcade — Colors</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  body { margin: 0; padding: 40px; max-width: 1080px; }
+  h1.sk-display { font-size: 24px; color: var(--sk-neon-magenta); text-shadow: var(--sk-glow-magenta); margin: 0 0 8px; }
+  h2.sk-ui { font-size: 14px; color: var(--sk-fg-2); margin: 32px 0 12px; }
+  .row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+  .row.neutrals { grid-template-columns: repeat(7, 1fr); }
+  .swatch {
+    border: 1px solid var(--sk-border-soft);
+    border-radius: var(--sk-radius-2);
+    overflow: hidden;
+    font-family: var(--sk-font-ui);
+    font-size: 10px;
+    color: var(--sk-fg);
+  }
+  .swatch .chip { height: 80px; }
+  .swatch .meta { padding: 8px 10px; background: var(--sk-card); }
+  .swatch .name { display:block; font-size: 11px; }
+  .swatch .hex { display:block; font-family: var(--sk-font-mono); font-size: 10px; color: var(--sk-fg-muted); margin-top: 2px; }
+
+  .glow-demo { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .glow-demo > div {
+    background: var(--sk-bg-2); padding: 16px; text-align: center;
+    border-radius: var(--sk-radius-2); border: 1px solid var(--sk-border-soft);
+    font-family: var(--sk-font-display); font-size: 14px;
+  }
+  p.lede { font-family: var(--sk-font-body); font-size: 18px; color: var(--sk-fg-2); margin: 0 0 24px; max-width: 60ch; }
+</style>
+</head>
+<body>
+  <h1 class="sk-display">PALETTE</h1>
+  <p class="lede">Dark canvas first; neons used sparsely as signal. Each cabinet picks one lead neon — the rest stay reserved for state and data.</p>
+
+  <h2 class="sk-ui">Canvas &amp; surfaces</h2>
+  <div class="row neutrals">
+    <div class="swatch"><div class="chip" style="background:#0b0716"></div><div class="meta"><span class="name">Bg</span><span class="hex">#0b0716</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#140a26"></div><div class="meta"><span class="name">Bg-2</span><span class="hex">#140a26</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#1a1030"></div><div class="meta"><span class="name">Shell</span><span class="hex">#1a1030</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#211640"></div><div class="meta"><span class="name">Card</span><span class="hex">#211640</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#2c1d54"></div><div class="meta"><span class="name">Card-2</span><span class="hex">#2c1d54</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#3a2966"></div><div class="meta"><span class="name">Muted</span><span class="hex">#3a2966</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#4a3580"></div><div class="meta"><span class="name">Border</span><span class="hex">#4a3580</span></div></div>
+  </div>
+
+  <h2 class="sk-ui">Foreground</h2>
+  <div class="row">
+    <div class="swatch"><div class="chip" style="background:#f3e9ff"></div><div class="meta"><span class="name">Fg</span><span class="hex">#f3e9ff</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#c8b6e8"></div><div class="meta"><span class="name">Fg-2</span><span class="hex">#c8b6e8</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#8a78b3"></div><div class="meta"><span class="name">Fg-muted</span><span class="hex">#8a78b3</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#5b4d80"></div><div class="meta"><span class="name">Fg-dim</span><span class="hex">#5b4d80</span></div></div>
+  </div>
+
+  <h2 class="sk-ui">Brand neons</h2>
+  <div class="row">
+    <div class="swatch"><div class="chip" style="background:#ff3ea0"></div><div class="meta"><span class="name">Magenta</span><span class="hex">#ff3ea0</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#ff7ad9"></div><div class="meta"><span class="name">Pink</span><span class="hex">#ff7ad9</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#b26bff"></div><div class="meta"><span class="name">Violet</span><span class="hex">#b26bff</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#8a3dff"></div><div class="meta"><span class="name">Purple</span><span class="hex">#8a3dff</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#4ee2ff"></div><div class="meta"><span class="name">Cyan</span><span class="hex">#4ee2ff</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#4a7dff"></div><div class="meta"><span class="name">Blue</span><span class="hex">#4a7dff</span></div></div>
+  </div>
+  <div class="row" style="margin-top: 8px;">
+    <div class="swatch"><div class="chip" style="background:#5fff8a"></div><div class="meta"><span class="name">Green</span><span class="hex">#5fff8a</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#ffd23f"></div><div class="meta"><span class="name">Yellow</span><span class="hex">#ffd23f</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#ff9347"></div><div class="meta"><span class="name">Orange</span><span class="hex">#ff9347</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#ff4d6d"></div><div class="meta"><span class="name">Red</span><span class="hex">#ff4d6d</span></div></div>
+  </div>
+
+  <h2 class="sk-ui">Glow signature</h2>
+  <div class="glow-demo">
+    <div class="sk-glow-magenta">MAGENTA</div>
+    <div class="sk-glow-violet">VIOLET</div>
+    <div class="sk-glow-cyan">CYAN</div>
+    <div class="sk-glow-green">GREEN</div>
+    <div class="sk-glow-yellow">YELLOW</div>
+  </div>
+</body>
+</html>

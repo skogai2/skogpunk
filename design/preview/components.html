@@ -1,0 +1,179 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="Components" subtitle="Buttons, plaques, quest strip, cards" viewport="1280x1700" -->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Skogai Arcade — Components</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<link rel="stylesheet" href="../components.css" />
+<style>
+  html, body { margin: 0; padding: 0; }
+  body { padding: 32px; }
+  .wrap { max-width: 1280px; margin: 0 auto; }
+  .head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 32px; padding-bottom: 16px; border-bottom: 2px solid var(--sk-border); }
+  .head h1 { margin: 0; color: var(--sk-neon-green); text-shadow: var(--sk-glow-green); }
+  .head .sub { color: var(--sk-fg-muted); }
+  .section { margin-bottom: 40px; }
+  .section > h2 { color: var(--sk-fg-2); margin: 0 0 4px 0; }
+  .section > .lead { color: var(--sk-fg-muted); margin: 0 0 16px 0; }
+
+  .group {
+    background: var(--sk-card);
+    border: 1px solid var(--sk-border);
+    border-radius: var(--sk-radius-panel);
+    padding: 24px;
+    display: flex; flex-wrap: wrap; gap: 16px; align-items: center;
+  }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="head">
+    <h1 class="sk-h2">COMPONENTS</h1>
+    <div class="sub sk-label">Buttons · plaques · quests · HUD bars</div>
+  </header>
+
+  <!-- Buttons -->
+  <section class="section">
+    <h2 class="sk-h3">Buttons</h2>
+    <p class="lead sk-body-sm">2px radius. Primary uses magenta neon + glow; ghost / outline for utility.</p>
+    <div class="group">
+      <button class="sk-btn sk-btn-primary">▶ INSERT COIN</button>
+      <button class="sk-btn sk-btn-secondary">DEPLOY</button>
+      <button class="sk-btn sk-btn-outline">CANCEL</button>
+      <button class="sk-btn sk-btn-ghost">SKIP</button>
+      <button class="sk-btn sk-btn-danger">ABORT</button>
+      <button class="sk-btn sk-btn-success">CLAIM REWARD</button>
+      <button class="sk-btn sk-btn-primary" disabled>LOCKED</button>
+    </div>
+  </section>
+
+  <!-- Badges -->
+  <section class="section">
+    <h2 class="sk-h3">Badges & status pills</h2>
+    <p class="lead sk-body-sm">Always paired with a label or icon. Color alone never carries meaning.</p>
+    <div class="group">
+      <span class="sk-badge sk-badge-primary">★ NEW</span>
+      <span class="sk-badge sk-badge-cyan">▣ ONLINE</span>
+      <span class="sk-badge sk-badge-success">✓ DONE</span>
+      <span class="sk-badge sk-badge-warning">⚡ BOSS</span>
+      <span class="sk-badge sk-badge-danger">✕ FAILED</span>
+      <span class="sk-badge sk-badge-muted">— LOCKED</span>
+    </div>
+  </section>
+
+  <!-- Score / HP plaques -->
+  <section class="section">
+    <h2 class="sk-h3">HUD plaques</h2>
+    <p class="lead sk-body-sm">Embedded in frame chrome. CRT inset border, monospace value, label above.</p>
+    <div class="row3">
+      <div class="sk-plaque sk-plaque-violet">
+        <div class="sk-plaque-label">SCORE</div>
+        <div class="sk-plaque-value">012,750</div>
+      </div>
+      <div class="sk-plaque sk-plaque-cyan">
+        <div class="sk-plaque-label">PLAYER · LV.42</div>
+        <div class="sk-plaque-value">SUDO_HERO</div>
+      </div>
+      <div class="sk-plaque sk-plaque-green">
+        <div class="sk-plaque-label">UPTIME</div>
+        <div class="sk-plaque-value">99.97%</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quest strip -->
+  <section class="section">
+    <h2 class="sk-h3">Quest strip</h2>
+    <p class="lead sk-body-sm">Bottom-of-screen module: icon · title · progress · status. Reuse across surfaces.</p>
+    <div class="sk-quest-strip">
+      <div class="sk-quest sk-quest-done">
+        <div class="sk-quest-icon">✓</div>
+        <div class="sk-quest-body">
+          <div class="sk-quest-title">PATCH KERNEL</div>
+          <div class="sk-quest-meta">+250 XP · 00:42</div>
+        </div>
+      </div>
+      <div class="sk-quest sk-quest-active">
+        <div class="sk-quest-icon">⚡</div>
+        <div class="sk-quest-body">
+          <div class="sk-quest-title">DEFEAT FIREWALL</div>
+          <div class="sk-quest-progress"><div style="width: 62%"></div></div>
+          <div class="sk-quest-meta">62% · ETA 02:18</div>
+        </div>
+      </div>
+      <div class="sk-quest sk-quest-locked">
+        <div class="sk-quest-icon">🔒</div>
+        <div class="sk-quest-body">
+          <div class="sk-quest-title">DEPLOY TO PROD</div>
+          <div class="sk-quest-meta">UNLOCK AT LV.45</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cards -->
+  <section class="section">
+    <h2 class="sk-h3">Cards & panels</h2>
+    <p class="lead sk-body-sm">Embedded by default; outlined when raised. 4px radius.</p>
+    <div class="row2">
+      <div class="sk-card sk-card-default">
+        <div class="sk-card-eyebrow">▸ DAILY MISSION</div>
+        <h3 class="sk-card-title">Defeat the firewall boss</h3>
+        <p class="sk-card-body">A rogue daemon is hammering port 443. Patch the kernel and route the wizards through the back door before the timer runs out.</p>
+        <div class="sk-card-footer">
+          <span class="sk-meta">REWARD · 2,500 XP</span>
+          <button class="sk-btn sk-btn-primary">▶ START</button>
+        </div>
+      </div>
+      <div class="sk-card sk-card-raised">
+        <div class="sk-card-eyebrow" style="color: var(--sk-neon-cyan); text-shadow: var(--sk-glow-cyan);">▸ BOSS RUSH</div>
+        <h3 class="sk-card-title">WIZARDS &amp; FIREWALLS · S+</h3>
+        <p class="sk-card-body">Beat 5 firewalls in a row without losing HP. Earn the Cyan Helmet cosmetic.</p>
+        <div class="sk-card-footer">
+          <span class="sk-meta">3 / 5 CLEAR</span>
+          <button class="sk-btn sk-btn-secondary">CONTINUE</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Inputs -->
+  <section class="section">
+    <h2 class="sk-h3">Inputs</h2>
+    <p class="lead sk-body-sm">Square edges, 2px focus ring in violet. Label above; help text below.</p>
+    <div class="group">
+      <label class="sk-field" style="flex: 1;">
+        <span class="sk-field-label">PLAYER NAME</span>
+        <input class="sk-input" value="SUDO_HERO" />
+        <span class="sk-field-help">3–12 chars, A–Z &amp; 0–9</span>
+      </label>
+      <label class="sk-field" style="flex: 1;">
+        <span class="sk-field-label">REGION</span>
+        <select class="sk-input">
+          <option>NORTH AMERICA</option>
+          <option>EUROPE</option>
+          <option>ASIA</option>
+        </select>
+        <span class="sk-field-help">Affects matchmaking</span>
+      </label>
+    </div>
+  </section>
+
+  <!-- Terminal -->
+  <section class="section">
+    <h2 class="sk-h3">Terminal block</h2>
+    <p class="lead sk-body-sm">CRT green on near-black. Reserved for system output and code-like values.</p>
+    <pre class="sk-terminal-block">$ skogai deploy --quest=firewall-boss
+&gt; loading payload............ [OK]
+&gt; routing through wizards.... [OK]
+&gt; spawning boss.............. [OK]
+&gt; READY. press ▶ to start.</pre>
+  </section>
+
+</div>
+</body>
+</html>

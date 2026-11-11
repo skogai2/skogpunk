@@ -1,0 +1,6 @@
+{
+  "name": "Skogai RPG",
+  "description": "Cyberpunk terminal RPG and trivia arcade where hackers jack in to solve command-line and automation contracts",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

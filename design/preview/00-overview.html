@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Skogai Arcade — Overview</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  body { margin: 0; padding: 48px; max-width: 1080px; }
+  .marquee {
+    background: var(--sk-shell);
+    border: 2px solid var(--sk-border);
+    border-radius: var(--sk-radius-2);
+    box-shadow: var(--sk-elev-2);
+    padding: 40px 48px;
+    margin-bottom: 32px;
+  }
+  .marquee h1 {
+    font-family: var(--sk-font-display);
+    font-size: 40px;
+    color: var(--sk-neon-magenta);
+    text-shadow: var(--sk-glow-magenta);
+    margin: 0 0 16px;
+    line-height: 1.2;
+  }
+  .marquee p {
+    font-family: var(--sk-font-body);
+    font-size: 22px;
+    color: var(--sk-fg-2);
+    margin: 0;
+  }
+  .cabinets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .cab {
+    background: var(--sk-card);
+    border: 2px solid var(--sk-border-soft);
+    border-radius: var(--sk-radius-2);
+    padding: 20px;
+    box-shadow: var(--sk-elev-1);
+  }
+  .cab .tag { font-family: var(--sk-font-ui); font-size: 10px; letter-spacing: .08em; color: var(--sk-fg-muted); text-transform: uppercase; }
+  .cab h2 { font-family: var(--sk-font-display); font-size: 14px; line-height: 1.4; margin: 8px 0 12px; }
+  .cab p { font-family: var(--sk-font-body); font-size: 18px; color: var(--sk-fg-2); margin: 0 0 12px; }
+  .swatch-row { display: flex; gap: 4px; }
+  .sw { width: 28px; height: 28px; border-radius: 2px; border: 1px solid rgba(0,0,0,.4); }
+  .cab.sudo h2 { color: var(--sk-neon-violet); text-shadow: var(--sk-glow-violet); }
+  .cab.wiz h2  { color: var(--sk-neon-cyan);   text-shadow: var(--sk-glow-cyan); }
+  .cab.honk h2 { color: var(--sk-neon-magenta);text-shadow: var(--sk-glow-magenta); }
+
+  .ladder { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 32px; }
+  .pl {
+    padding: 12px 14px; border-radius: var(--sk-radius-2);
+    border: 2px solid var(--sk-border);
+  }
+  .pl b { font-family: var(--sk-font-ui); font-size: 12px; display:block; color: var(--sk-fg); }
+  .pl span { font-family: var(--sk-font-body); font-size: 16px; color: var(--sk-fg-muted); }
+</style>
+</head>
+<body>
+  <div class="marquee">
+    <h1>SKOGAI ARCADE</h1>
+    <p>A pixel-art neon-arcade brand language. One night-city canvas, three cabinets, one disciplined system of color, type, plaques, and glow.</p>
+  </div>
+
+  <div class="cabinets">
+    <div class="cab sudo">
+      <div class="tag">Cabinet 01</div>
+      <h2>SUDO HERO</h2>
+      <p>Single-player. Rooftop adventure. Lead accent: violet.</p>
+      <div class="swatch-row">
+        <div class="sw" style="background:var(--sk-neon-violet)"></div>
+        <div class="sw" style="background:var(--sk-neon-purple)"></div>
+        <div class="sw" style="background:var(--sk-neon-yellow)"></div>
+      </div>
+    </div>
+    <div class="cab wiz">
+      <div class="tag">Cabinet 02</div>
+      <h2>WI-FI WIZARDS</h2>
+      <p>Co-op. Network rituals. Lead accent: cyan + magenta.</p>
+      <div class="swatch-row">
+        <div class="sw" style="background:var(--sk-neon-cyan)"></div>
+        <div class="sw" style="background:var(--sk-neon-magenta)"></div>
+        <div class="sw" style="background:var(--sk-neon-blue)"></div>
+      </div>
+    </div>
+    <div class="cab honk">
+      <div class="tag">Cabinet 03</div>
+      <h2>HONKERS &amp; HACKERS</h2>
+      <p>Couch-co-op chaos. Goose squad. Lead accent: magenta + yellow.</p>
+      <div class="swatch-row">
+        <div class="sw" style="background:var(--sk-neon-magenta)"></div>
+        <div class="sw" style="background:var(--sk-neon-yellow)"></div>
+        <div class="sw" style="background:var(--sk-neon-orange)"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ladder">
+    <div class="pl" style="background:var(--sk-bg)"><b>Base</b><span>--sk-bg</span></div>
+    <div class="pl" style="background:var(--sk-shell)"><b>Shell</b><span>--sk-shell</span></div>
+    <div class="pl" style="background:var(--sk-card)"><b>Card</b><span>--sk-card</span></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+{
+  "id": "first-boot",
+  "title": "First boot: tame the chores",
+  "cabinet": "sudo-hero",
+  "steps": [
+    {
+      "kind": "choice",
+      "prompt": "Your aunt wants a backup of her photos every Monday at 09:00. Which cron line?",
+      "choices": ["0 9 * * 1", "9 0 * * 1", "0 9 1 * *", "* 9 * * MON"],
+      "answer": 0,
+      "xp": 100
+    },
+    {
+      "kind": "choice",
+      "prompt": "Rename every .jpeg in this folder to .jpg. Pick the safe one-liner.",
+      "choices": [
+        "rm *.jpeg",
+        "for f in *.jpeg; do mv -n \"$f\" \"${f%.jpeg}.jpg\"; done",
+        "mv *.jpeg *.jpg",
+        "chmod +x *.jpeg"
+      ],
+      "answer": 1,
+      "xp": 150
+    },
+    {
+      "kind": "text",
+      "prompt": "Type the cron schedule for 07:30 every day.",
+      "match": "^30\\s+7\\s+\\*\\s+\\*\\s+\\*$",
+      "hint": "30 7 * * *",
+      "xp": 200
+    }
+  ]
+}

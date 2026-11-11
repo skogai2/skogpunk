@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Skogai Arcade — HUD Frame</title>
+<link rel="stylesheet" href="../styles.css" />
+<style>
+html,body{margin:0;padding:0}
+body{padding:32px}
+.wrap{max-width:1280px;margin:0 auto}
+.head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:24px;padding-bottom:16px;border-bottom:2px solid var(--sk-border)}
+.head h1{margin:0;color:var(--sk-neon-pink);text-shadow:var(--sk-glow-magenta)}
+.lead{color:var(--sk-fg-muted);max-width:74ch;margin:0 0 24px}
+.rowlabel{font-family:var(--sk-font-ui);font-size:10px;color:var(--sk-fg-muted);letter-spacing:.08em;margin:28px 0 8px}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pair .sk-hud{min-height:0}
+.pair .sk-hud-stage{height:170px}
+.pair .sk-announce-title{font-size:var(--sk-text-20)}
+.note{font-family:var(--sk-font-body);font-size:16px;color:var(--sk-fg-muted);margin:8px 0 0}
+code{font-family:var(--sk-font-mono);font-size:12px;color:var(--sk-fg-2)}
+</style>
+<template id="__bundler_thumbnail" data-bg-color="#0a0a12"><svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="800" fill="#0a0a12"/><rect x="360" y="200" width="480" height="400" fill="none" stroke="#ff2bd6" stroke-width="16"/><rect x="390" y="230" width="420" height="60" fill="#ff2bd6"/><rect x="390" y="320" width="420" height="180" fill="#39ff14" opacity=".7"/><rect x="390" y="530" width="420" height="40" fill="#00e5ff"/></svg></template>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <defs>
+    
+  </defs>
+
+  
+  <symbol id="sk-coin" viewBox="0 0 16 16">
+    <rect x="5" y="1" width="6" height="1"></rect>
+    <rect x="3" y="2" width="2" height="1"></rect><rect x="11" y="2" width="2" height="1"></rect>
+    <rect x="2" y="3" width="1" height="10"></rect><rect x="13" y="3" width="1" height="10"></rect>
+    <rect x="3" y="13" width="2" height="1"></rect><rect x="11" y="13" width="2" height="1"></rect>
+    <rect x="5" y="14" width="6" height="1"></rect>
+    <rect x="7" y="4" width="2" height="1"></rect>
+    <rect x="6" y="5" width="1" height="1"></rect><rect x="9" y="5" width="1" height="1"></rect>
+    <rect x="6" y="6" width="1" height="1"></rect>
+    <rect x="6" y="7" width="3" height="1"></rect>
+    <rect x="9" y="8" width="1" height="1"></rect>
+    <rect x="6" y="9" width="1" height="1"></rect><rect x="9" y="9" width="1" height="1"></rect>
+    <rect x="7" y="10" width="2" height="1"></rect>
+  </symbol>
+
+  
+  <symbol id="sk-heart" viewBox="0 0 16 16">
+    <rect x="2" y="3" width="3" height="1"></rect><rect x="11" y="3" width="3" height="1"></rect>
+    <rect x="1" y="4" width="5" height="1"></rect><rect x="10" y="4" width="5" height="1"></rect>
+    <rect x="1" y="5" width="14" height="1"></rect>
+    <rect x="1" y="6" width="14" height="1"></rect>
+    <rect x="2" y="7" width="12" height="1"></rect>
+    <rect x="3" y="8" width="10" height="1"></rect>
+    <rect x="4" y="9" width="8" height="1"></rect>
+    <rect x="5" y="10" width="6" height="1"></rect>
+    <rect x="6" y="11" width="4" height="1"></rect>
+    <rect x="7" y="12" width="2" height="1"></rect>
+  </symbol>
+
+  
+  <symbol id="sk-star" viewBox="0 0 16 16">
+    <rect x="7" y="1" width="2" height="2"></rect>
+    <rect x="6" y="3" width="4" height="2"></rect>
+    <rect x="1" y="5" width="14" height="2"></rect>
+    <rect x="3" y="7" width="10" height="2"></rect>
+    <rect x="4" y="9" width="3" height="2"></rect><rect x="9" y="9" width="3" height="2"></rect>
+    <rect x="3" y="11" width="3" height="2"></rect><rect x="10" y="11" width="3" height="2"></rect>
+    <rect x="2" y="13" width="2" height="2"></rect><rect x="12" y="13" width="2" height="2"></rect>
+  </symbol>
+
+  
+  <symbol id="sk-diamond" viewBox="0 0 16 16">
+    <rect x="4" y="2" width="8" height="2"></rect>
+    <rect x="2" y="4" width="12" height="2"></rect>
+    <rect x="3" y="6" width="10" height="2"></rect>
+    <rect x="4" y="8" width="8" height="2"></rect>
+    <rect x="5" y="10" width="6" height="2"></rect>
+    <rect x="6" y="12" width="4" height="2"></rect>
+    <rect x="7" y="14" width="2" height="1"></rect>
+  </symbol>
+
+  
+  <symbol id="sk-check" viewBox="0 0 16 16">
+    <rect x="12" y="3" width="2" height="2"></rect>
+    <rect x="10" y="5" width="2" height="2"></rect>
+    <rect x="8" y="7" width="2" height="2"></rect>
+    <rect x="6" y="9" width="2" height="2"></rect>
+    <rect x="4" y="11" width="2" height="2"></rect>
+    <rect x="2" y="9" width="2" height="2"></rect>
+    <rect x="3" y="10" width="2" height="2"></rect>
+  </symbol>
+
+  
+  <symbol id="sk-play" viewBox="0 0 16 16">
+    <rect x="4" y="2" width="2" height="12"></rect>
+    <rect x="6" y="3" width="2" height="10"></rect>
+    <rect x="8" y="4" width="2" height="8"></rect>
+    <rect x="10" y="5" width="2" height="6"></rect>
+    <rect x="12" y="6" width="2" height="4"></rect>
+    <rect x="14" y="7" width="1" height="2"></rect>
+  </symbol>
+
+  
+  <symbol id="sk-pause" viewBox="0 0 16 16">
+    <rect x="3" y="2" width="3" height="12"></rect>
+    <rect x="10" y="2" width="3" height="12"></rect>
+  </symbol>
+
+  
+  <symbol id="sk-sword" viewBox="0 0 16 16">
+    <rect x="11" y="1" width="3" height="1"></rect>
+    <rect x="10" y="2" width="3" height="2"></rect>
+    <rect x="9" y="3" width="3" height="2"></rect>
+    <rect x="8" y="4" width="3" height="2"></rect>
+    <rect x="7" y="5" width="3" height="2"></rect>
+    <rect x="6" y="6" width="3" height="2"></rect>
+    <rect x="5" y="7" width="3" height="2"></rect>
+    <rect x="4" y="8" width="3" height="2"></rect>
+    <rect x="2" y="10" width="3" height="1"></rect>
+    <rect x="3" y="9" width="2" height="3"></rect>
+    <rect x="1" y="11" width="3" height="1"></rect>
+    <rect x="5" y="11" width="2" height="2"></rect>
+    <rect x="6" y="13" width="2" height="2"></rect>
+  </symbol>
+
+  
+  <symbol id="sk-shield" viewBox="0 0 16 16">
+    <rect x="3" y="2" width="10" height="1"></rect>
+    <rect x="2" y="3" width="12" height="3"></rect>
+    <rect x="3" y="6" width="10" height="3"></rect>
+    <rect x="4" y="9" width="8" height="2"></rect>
+    <rect x="5" y="11" width="6" height="2"></rect>
+    <rect x="6" y="13" width="4" height="1"></rect>
+    <rect x="7" y="14" width="2" height="1"></rect>
+  </symbol>
+
+  
+  <symbol id="sk-key" viewBox="0 0 16 16">
+    <rect x="2" y="5" width="3" height="3"></rect>
+    <rect x="3" y="4" width="2" height="1"></rect><rect x="3" y="8" width="2" height="1"></rect>
+    <rect x="5" y="6" width="9" height="2"></rect>
+    <rect x="11" y="8" width="1" height="2"></rect>
+    <rect x="13" y="8" width="1" height="3"></rect>
+  </symbol>
+
+  
+  <symbol id="sk-chest" viewBox="0 0 16 16">
+    <rect x="2" y="4" width="12" height="2"></rect>
+    <rect x="2" y="6" width="1" height="8"></rect><rect x="13" y="6" width="1" height="8"></rect>
+    <rect x="3" y="6" width="10" height="1"></rect>
+    <rect x="3" y="13" width="10" height="1"></rect>
+    <rect x="3" y="9" width="10" height="2"></rect>
+    <rect x="7" y="8" width="2" height="4"></rect>
+  </symbol>
+
+  
+  <symbol id="sk-wifi" viewBox="0 0 16 16">
+    <rect x="3" y="3" width="10" height="1"></rect>
+    <rect x="2" y="4" width="2" height="1"></rect><rect x="12" y="4" width="2" height="1"></rect>
+    <rect x="5" y="6" width="6" height="1"></rect>
+    <rect x="4" y="7" width="2" height="1"></rect><rect x="10" y="7" width="2" height="1"></rect>
+    <rect x="7" y="9" width="2" height="1"></rect>
+    <rect x="7" y="11" width="2" height="2"></rect>
+  </symbol>
+
+  
+  <symbol id="sk-signal" viewBox="0 0 16 16">
+    <rect x="2" y="11" width="2" height="3"></rect>
+    <rect x="5" y="8" width="2" height="6"></rect>
+    <rect x="8" y="5" width="2" height="9"></rect>
+    <rect x="11" y="2" width="2" height="12"></rect>
+  </symbol>
+
+  
+  <symbol id="sk-chip" viewBox="0 0 16 16">
+    <rect x="4" y="1" width="1" height="2"></rect><rect x="7" y="1" width="1" height="2"></rect>
+    <rect x="9" y="1" width="1" height="2"></rect><rect x="12" y="1" width="1" height="2"></rect>
+    <rect x="4" y="13" width="1" height="2"></rect><rect x="7" y="13" width="1" height="2"></rect>
+    <rect x="9" y="13" width="1" height="2"></rect><rect x="12" y="13" width="1" height="2"></rect>
+    <rect x="1" y="4" width="2" height="1"></rect><rect x="1" y="7" width="2" height="1"></rect>
+    <rect x="1" y="9" width="2" height="1"></rect><rect x="1" y="12" width="2" height="1"></rect>
+    <rect x="13" y="4" width="2" height="1"></rect><rect x="13" y="7" width="2" height="1"></rect>
+    <rect x="13" y="9" width="2" height="1"></rect><rect x="13" y="12" width="2" height="1"></rect>
+    <rect x="3" y="3" width="10" height="10"></rect>
+    <rect x="5" y="5" width="6" height="6"></rect>
+  </symbol>
+
+  
+  <symbol id="sk-power" viewBox="0 0 16 16">
+    <rect x="7" y="2" width="2" height="6"></rect>
+    <rect x="5" y="4" width="1" height="2"></rect><rect x="10" y="4" width="1" height="2"></rect>
+    <rect x="3" y="6" width="1" height="3"></rect><rect x="12" y="6" width="1" height="3"></rect>
+    <rect x="2" y="9" width="2" height="2"></rect><rect x="12" y="9" width="2" height="2"></rect>
+    <rect x="3" y="11" width="2" height="2"></rect><rect x="11" y="11" width="2" height="2"></rect>
+    <rect x="5" y="13" width="6" height="1"></rect>
+  </symbol>
+
+  
+  <symbol id="sk-chevron-right" viewBox="0 0 16 16">
+    <rect x="5" y="2" width="2" height="2"></rect>
+    <rect x="7" y="4" width="2" height="2"></rect>
+    <rect x="9" y="6" width="2" height="4"></rect>
+    <rect x="7" y="10" width="2" height="2"></rect>
+    <rect x="5" y="12" width="2" height="2"></rect>
+  </symbol>
+
+  
+  <symbol id="sk-cursor" viewBox="0 0 16 16">
+    <rect x="3" y="2" width="1" height="11"></rect>
+    <rect x="4" y="3" width="1" height="9"></rect>
+    <rect x="5" y="4" width="1" height="7"></rect>
+    <rect x="6" y="5" width="1" height="5"></rect>
+    <rect x="7" y="6" width="1" height="3"></rect>
+    <rect x="8" y="7" width="2" height="2"></rect>
+    <rect x="6" y="11" width="2" height="3"></rect>
+    <rect x="8" y="11" width="2" height="3"></rect>
+  </symbol>
+
+  
+  <symbol id="sk-ghost" viewBox="0 0 16 16">
+    <rect x="4" y="1" width="8" height="1"></rect>
+    <rect x="3" y="2" width="10" height="1"></rect>
+    <rect x="2" y="3" width="12" height="11"></rect>
+    <rect x="2" y="14" width="2" height="1"></rect><rect x="6" y="14" width="2" height="1"></rect>
+    <rect x="9" y="14" width="2" height="1"></rect><rect x="12" y="14" width="2" height="1"></rect>
+  </symbol>
+
+  
+  <symbol id="sk-trophy" viewBox="0 0 16 16">
+    <rect x="3" y="2" width="10" height="1"></rect>
+    <rect x="3" y="3" width="2" height="6"></rect><rect x="11" y="3" width="2" height="6"></rect>
+    <rect x="5" y="3" width="6" height="6"></rect>
+    <rect x="1" y="3" width="2" height="3"></rect><rect x="13" y="3" width="2" height="3"></rect>
+    <rect x="6" y="9" width="4" height="2"></rect>
+    <rect x="4" y="11" width="8" height="1"></rect>
+    <rect x="3" y="12" width="10" height="2"></rect>
+  </symbol>
+</svg>
+<div class="wrap">
+  
+  <header class="head">
+    <h1 class="sk-h2">HUD FRAME</h1>
+    <div class="sk-label" style="color:var(--sk-fg-muted)">Status header · stage · dialogue · quest strip</div>
+  </header>
+  <p class="lead sk-body-sm">One chassis. A status header pinned to the top edge, a stage that carries the art and the single dominant headline, a mascot dialogue plaque, and a footer quest strip. Retint the whole frame with <code>data-cabinet</code> — no component rules change.</p>
+
+  <div class="rowlabel">▸ FULL FRAME · CABINET 04 · SKOG-NET SYNDICATE</div>
+  <div class="sk-hud" data-cabinet="skognet-syndicate">
+    <div class="sk-frame sk-hud-bar">
+      <div class="sk-hud-avatar"><svg class="sk-icon sk-icon-32" aria-hidden="true"><use href="#sk-chip"></use></svg></div>
+      <div class="sk-hud-brand">SKOG-NET<br />SYNDICATE<small>▸ CITY-FOREST LINK</small></div>
+      <div class="sk-hud-stats">
+        <div class="sk-stat">
+          <span class="sk-stat-label">HP</span>
+          <span class="sk-hearts"><i></i><i></i><i></i><i></i><i></i><i></i><i class="empty"></i></span>
+          <span class="sk-stat-value">6/7</span>
+        </div>
+        <div class="sk-stat">
+          <span class="sk-stat-label">LEVEL 55</span>
+          <span class="sk-meter"><i></i><i></i><i></i><i></i><i></i><i class="empty"></i><i class="empty"></i></span>
+          <span class="sk-stat-value">72%</span>
+        </div>
+        <div class="sk-stat">
+          <span class="sk-stat-label">ECO-CREDITS</span>
+          <span></span>
+          <span class="sk-stat-value sk-glow-acid">12345</span>
+        </div>
+        <div class="sk-stat">
+          <span class="sk-stat-label">TIME</span>
+          <span></span>
+          <span class="sk-stat-value">01:23:45</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sk-hud-stage sk-hud-stage-tall">
+      <img src="../assets/scene-skognet-syndicate.webp" alt="Skog-Net Syndicate reference scene" />
+    </div>
+
+    <div class="sk-frame sk-announce">
+      <h2 class="sk-announce-title sk-glow-magenta">ECO-GRID ONLINE!</h2>
+      <p class="sk-announce-sub">BIO-INTERFERENCE NEUTRALIZED.<br />NEURAL OAK SERVERS SYNCED.</p>
+    </div>
+
+    <div class="sk-frame sk-dialogue">
+      <div class="sk-dialogue-portrait"><svg class="sk-icon sk-icon-40" aria-hidden="true"><use href="#sk-shield"></use></svg></div>
+      <div>
+        <div class="sk-dialogue-name">ELDER OAK</div>
+        <p class="sk-dialogue-text">Syndicate workers, the Skogai commends your effort.<br />Prepare for deep root integration.</p>
+      </div>
+    </div>
+
+    <div class="sk-hud-foot">
+      <div class="sk-frame"><svg class="sk-icon sk-icon-16" aria-hidden="true"><use href="#sk-diamond"></use></svg> 3/3 CORES</div>
+      <div class="sk-frame grow">SIDE QUEST: Cultivate data seeds in the sewers</div>
+      <div class="sk-frame"><span class="done">COMPLETE! <svg class="sk-icon sk-icon-16" style="display:inline-block;vertical-align:-2px" aria-hidden="true"><use href="#sk-check"></use></svg></span></div>
+    </div>
+  </div>
+  <p class="note">Every region is a <code>.sk-frame</code> — double stroke, black inner rule, faint outward glow in the cabinet accent.</p>
+
+  <div class="rowlabel">▸ SAME MARKUP · CABINETS 01–03</div>
+  <div class="pair">
+    <div class="sk-hud" data-cabinet="sudo-hero">
+      <div class="sk-frame sk-hud-bar">
+        <div class="sk-hud-brand">SUDO HERO<small>▸ RISE OF THE ROOT USER</small></div>
+        <div class="sk-hud-stats">
+          <div class="sk-stat"><span class="sk-stat-label">HP</span><span class="sk-meter"><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="sk-stat-value">120/120</span></div>
+        </div>
+      </div>
+      <div class="sk-hud-stage"><img src="../assets/scene-sudo-hero.png" alt="Sudo Hero reference scene" /></div>
+      <div class="sk-frame sk-announce">
+        <h2 class="sk-announce-title">ACCESS GRANTED!</h2>
+        <p class="sk-announce-sub">YOU ARE NOW LEGENDARY.</p>
+      </div>
+      <div class="sk-hud-foot">
+        <div class="sk-frame grow">KARMA LEVEL: MAX</div>
+        <div class="sk-frame"><span class="sk-glow-yellow">S+</span></div>
+      </div>
+    </div>
+
+    <div class="sk-hud" data-cabinet="honkers-hackers">
+      <div class="sk-frame sk-hud-bar">
+        <div class="sk-hud-brand">HONKERS<br />&amp; HACKERS<small>▸ OPERATION SKOGAI</small></div>
+        <div class="sk-hud-stats">
+          <div class="sk-stat"><span class="sk-stat-label">LV 42</span><span class="sk-hearts"><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="sk-stat-value">100%</span></div>
+        </div>
+      </div>
+      <div class="sk-hud-stage"><img src="../assets/scene-honkers-hackers.png" alt="Honkers and Hackers reference scene" /></div>
+      <div class="sk-frame sk-announce">
+        <h2 class="sk-announce-title">OBJECTIVE COMPLETE!</h2>
+        <p class="sk-announce-sub">ALL DATA COLLECTED. PEACE RESTORED.</p>
+      </div>
+      <div class="sk-hud-foot">
+        <div class="sk-frame grow">SIDE QUEST: Teach the City Dorks to Code</div>
+        <div class="sk-frame"><span class="done">COMPLETE! <svg class="sk-icon sk-icon-16" style="display:inline-block;vertical-align:-2px" aria-hidden="true"><use href="#sk-check"></use></svg></span></div>
+      </div>
+    </div>
+
+    <div class="sk-hud" data-cabinet="wifi-wizards">
+      <div class="sk-frame sk-hud-bar">
+        <div class="sk-hud-avatar"><svg class="sk-icon sk-icon-32" aria-hidden="true"><use href="#sk-wifi"></use></svg></div>
+        <div class="sk-hud-brand">SKOGAI<small>▸ &amp; THE WI-FI WIZARDS</small></div>
+        <div class="sk-hud-stats">
+          <div class="sk-stat"><span class="sk-stat-label">NET LVL</span><span class="sk-meter"><i></i><i></i><i></i><i></i><i class="empty"></i></span><span class="sk-stat-value">00:77:75</span></div>
+        </div>
+      </div>
+      <div class="sk-hud-stage"><img src="../assets/scene-wifi-wizards.png" alt="Wi-Fi Wizards reference scene" /></div>
+      <div class="sk-frame sk-announce">
+        <h2 class="sk-announce-title">MISSION COMPLETE!</h2>
+        <p class="sk-announce-sub">THE CITY HAS FULL BARS!</p>
+      </div>
+      <div class="sk-hud-foot">
+        <div class="sk-frame grow">OBJECTIVE: Restore internet to Neo Skogai City</div>
+        <div class="sk-frame"><span class="done">100%</span></div>
+      </div>
+    </div>
+
+    <div class="sk-hud">
+      <div class="sk-frame sk-hud-bar">
+        <div class="sk-hud-brand">DEFAULT<small>▸ NO CABINET SCOPE</small></div>
+        <div class="sk-hud-stats">
+          <div class="sk-stat"><span class="sk-stat-label">HP</span><span class="sk-hearts"><i></i><i></i><i class="empty"></i></span><span class="sk-stat-value">2/3</span></div>
+        </div>
+      </div>
+      <div class="sk-hud-stage" style="display:grid;place-items:center">
+        <div class="sk-meta" style="text-align:center;line-height:1.8">STAGE SLOT<br />pixel scene · 3:2 or taller</div>
+      </div>
+      <div class="sk-frame sk-announce">
+        <h2 class="sk-announce-title">READY PLAYER</h2>
+        <p class="sk-announce-sub">BASE TOKENS · MAGENTA PRIMARY</p>
+      </div>
+      <div class="sk-hud-foot">
+        <div class="sk-frame grow">Unscoped frames fall back to the root palette</div>
+        <div class="sk-frame">▸</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rowlabel">▸ RULES</div>
+  <div class="sk-card sk-card-default">
+    <p class="sk-card-body">One dominant headline per frame; everything else is chrome. Header and footer stay attached to the frame edges — never floated. Hearts and meters are blocky and countable, never smooth bars or percentages alone. Keep the stage art pixelated (<code>image-rendering: pixelated</code>) and never place body copy on top of it.</p>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Skogai Arcade — Components</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  body { margin: 0; padding: 40px; max-width: 1100px; }
+  h1.title { font-family: var(--sk-font-display); font-size: 24px; color: var(--sk-neon-violet); text-shadow: var(--sk-glow-violet); margin: 0 0 8px; }
+  p.lede { font-family: var(--sk-font-body); font-size: 18px; color: var(--sk-fg-2); margin: 0 0 24px; max-width: 60ch; }
+  h2 { font-family: var(--sk-font-ui); font-size: 12px; color: var(--sk-fg-muted); text-transform: uppercase; letter-spacing: .08em; margin: 28px 0 12px; }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--sk-font-ui); font-size: 14px; text-transform: uppercase; letter-spacing: .04em;
+    padding: 10px 16px; border: 2px solid transparent; border-radius: var(--sk-radius-1);
+    cursor: pointer; user-select: none;
+  }
+  .btn-primary { background: var(--sk-neon-magenta); color: var(--sk-primary-fg); box-shadow: var(--sk-elev-1), var(--sk-glow-magenta); border-color: #6b1a47; }
+  .btn-secondary { background: var(--sk-neon-cyan); color: var(--sk-primary-fg); box-shadow: var(--sk-elev-1); border-color: #1a6b7a; }
+  .btn-ghost { background: transparent; color: var(--sk-fg); border-color: var(--sk-border); }
+  .btn-danger { background: var(--sk-neon-red); color: var(--sk-primary-fg); box-shadow: var(--sk-elev-1); border-color: #6b1a2a; }
+
+  .row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+
+  /* Quest row */
+  .quest-strip {
+    background: var(--sk-card); border: 2px solid var(--sk-border-soft); border-radius: var(--sk-radius-2);
+    padding: 8px;
+  }
+  .quest {
+    display: grid; grid-template-columns: 32px 1fr auto; gap: 12px; align-items: center;
+    padding: 12px; border-radius: var(--sk-radius-1);
+  }
+  .quest + .quest { border-top: 1px solid var(--sk-border-soft); }
+  .quest .icon { width: 24px; height: 24px; color: var(--sk-neon-violet); }
+  .quest .icon.done { color: var(--sk-neon-green); }
+  .quest .title { font-family: var(--sk-font-ui); font-size: 14px; color: var(--sk-fg); }
+  .quest .meta { font-family: var(--sk-font-body); font-size: 16px; color: var(--sk-fg-muted); }
+  .quest .check {
+    width: 22px; height: 22px; border: 2px solid var(--sk-border); border-radius: 2px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .quest .check.checked { background: var(--sk-neon-green); border-color: var(--sk-neon-green); box-shadow: var(--sk-glow-green); }
+  .quest .check.checked svg { color: var(--sk-primary-fg); }
+
+  /* Plaque */
+  .plaque {
+    background: var(--sk-card); padding: 14px 18px; border-radius: var(--sk-radius-2);
+    box-shadow: var(--sk-inset-violet);
+    display: inline-flex; flex-direction: column; gap: 4px; min-width: 160px;
+  }
+  .plaque .lbl { font-family: var(--sk-font-ui); font-size: 10px; color: var(--sk-fg-muted); text-transform: uppercase; letter-spacing: .08em; }
+  .plaque .val { font-family: var(--sk-font-display); font-size: 28px; color: var(--sk-neon-violet); text-shadow: var(--sk-glow-violet); }
+  .plaque.cyan { box-shadow: var(--sk-inset-cyan); }
+  .plaque.cyan .val { color: var(--sk-neon-cyan); text-shadow: var(--sk-glow-cyan); }
+  .plaque.gold .val { color: var(--sk-neon-yellow); text-shadow: var(--sk-glow-yellow); }
+
+  /* HUD bar */
+  .hud {
+    display: grid; grid-template-columns: 40px 1fr auto; align-items: center; gap: 12px;
+    background: var(--sk-bg-2); padding: 8px 12px; border: 2px solid var(--sk-border-soft);
+    border-radius: var(--sk-radius-2);
+  }
+  .hud .avatar { width: 40px; height: 40px; background: var(--sk-neon-violet); border: 2px solid #1a0420; box-shadow: var(--sk-glow-violet); }
+  .hud .lockup .name { font-family: var(--sk-font-ui); font-size: 14px; color: var(--sk-fg); }
+  .hud .lockup .sub  { font-family: var(--sk-font-body); font-size: 16px; color: var(--sk-fg-muted); }
+  .hud .stats { display: flex; gap: 12px; align-items: center; font-family: var(--sk-font-ui); font-size: 12px; }
+  .hud .stat { display:flex; align-items:center; gap: 4px; }
+  .hud .stat svg { width: 16px; height: 16px; }
+
+  /* Dialog */
+  .dialog {
+    display: grid; grid-template-columns: 64px 1fr; gap: 12px;
+    background: var(--sk-card); padding: 16px; border-radius: var(--sk-radius-2);
+    border: 2px solid var(--sk-border);
+    position: relative;
+  }
+  .dialog::before {
+    content: ""; position: absolute; left: 64px; top: -8px; width: 0; height: 0;
+    border: 8px solid transparent; border-bottom-color: var(--sk-border);
+  }
+  .dialog .portrait { width: 64px; height: 64px; background: var(--sk-neon-cyan); border: 2px solid #003040; }
+  .dialog .speaker { font-family: var(--sk-font-ui); font-size: 12px; color: var(--sk-neon-cyan); margin-bottom: 4px; }
+  .dialog .body { font-family: var(--sk-font-body); font-size: 20px; color: var(--sk-fg); line-height: 1.35; }
+
+  /* Terminal plaque */
+  .term {
+    background: var(--sk-bg); border: 1px solid var(--sk-border-soft); border-radius: 4px;
+    padding: 10px 14px; font-family: var(--sk-font-mono); font-size: 14px; color: var(--sk-neon-green);
+  }
+  .term .prompt { color: var(--sk-fg-muted); }
+  .term .ok { color: var(--sk-neon-green); }
+  .term .warn { color: var(--sk-neon-yellow); }
+
+  /* Badges */
+  .badge {
+    display:inline-flex; align-items:center; gap:6px; padding: 4px 8px;
+    font-family: var(--sk-font-ui); font-size: 10px; text-transform: uppercase; letter-spacing: .06em;
+    border-radius: 2px; border: 1px solid currentColor;
+  }
+  .badge.success { color: var(--sk-neon-green); }
+  .badge.warn    { color: var(--sk-neon-yellow); }
+  .badge.danger  { color: var(--sk-neon-red); }
+  .badge.info    { color: var(--sk-neon-cyan); }
+
+  .coin {
+    display:inline-flex; align-items:center; justify-content:center;
+    width:24px;height:24px;border-radius:50%;
+    background: var(--sk-neon-yellow); color:#3a2200; box-shadow: var(--sk-glow-yellow);
+    font-family: var(--sk-font-display); font-size: 10px;
+  }
+
+  .grid-2 { display:grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+</style>
+</head>
+<body>
+  <h1 class="title">COMPONENTS</h1>
+  <p class="lede">Recipes, not a library. Build to these specs in any framework — they are pixel-aligned and use only tokens from <code style="font-family:var(--sk-font-mono);color:var(--sk-neon-green);">colors_and_type.css</code>.</p>
+
+  <h2>Buttons</h2>
+  <div class="row">
+    <button class="btn btn-primary">Start mission</button>
+    <button class="btn btn-secondary">Continue</button>
+    <button class="btn btn-ghost">Filter</button>
+    <button class="btn btn-danger">Abort</button>
+  </div>
+
+  <h2>Badges &amp; coins</h2>
+  <div class="row">
+    <span class="badge success">+250 XP</span>
+    <span class="badge warn">Low HP</span>
+    <span class="badge danger">Failed</span>
+    <span class="badge info">New</span>
+    <span class="coin">$</span>
+    <span class="coin">x12</span>
+  </div>
+
+  <h2>Plaques (rank / score)</h2>
+  <div class="row">
+    <div class="plaque"><span class="lbl">Rank</span><span class="val">S+</span></div>
+    <div class="plaque cyan"><span class="lbl">Score</span><span class="val">142,830</span></div>
+    <div class="plaque gold"><span class="lbl">Coins</span><span class="val">x 248</span></div>
+  </div>
+
+  <h2>Quest strip</h2>
+  <div class="quest-strip">
+    <div class="quest">
+      <svg class="icon done" width="24" height="24"><use href="../assets/icons.svg#sk-check"/></svg>
+      <div><div class="title">Patch the rooftop antenna</div><div class="meta">Completed · +120 XP</div></div>
+      <div class="check checked"><svg width="14" height="14"><use href="../assets/icons.svg#sk-check"/></svg></div>
+    </div>
+    <div class="quest">
+      <svg class="icon" width="24" height="24"><use href="../assets/icons.svg#sk-key"/></svg>
+      <div><div class="title">Recover the lost passkey</div><div class="meta">2 of 3 fragments found</div></div>
+      <div class="check"></div>
+    </div>
+    <div class="quest">
+      <svg class="icon" width="24" height="24"><use href="../assets/icons.svg#sk-chest"/></svg>
+      <div><div class="title">Open the loot chest</div><div class="meta">Locked · needs key</div></div>
+      <div class="check"></div>
+    </div>
+  </div>
+
+  <h2>HUD bar</h2>
+  <div class="hud">
+    <div class="avatar"></div>
+    <div class="lockup"><div class="name">SUDO_HERO</div><div class="sub">Lv. 14 · Night City</div></div>
+    <div class="stats">
+      <span class="stat" style="color:var(--sk-neon-red)"><svg><use href="../assets/icons.svg#sk-heart"/></svg>4/5</span>
+      <span class="stat" style="color:var(--sk-neon-yellow)"><svg><use href="../assets/icons.svg#sk-coin"/></svg>248</span>
+      <span class="stat" style="color:var(--sk-neon-cyan)"><svg><use href="../assets/icons.svg#sk-signal"/></svg>87%</span>
+    </div>
+  </div>
+
+  <h2>Dialog &amp; terminal</h2>
+  <div class="grid-2">
+    <div class="dialog">
+      <div class="portrait"></div>
+      <div>
+        <div class="speaker">SKOGAI</div>
+        <div class="body">A new contract just hit the wire. Something about a goose on the rooftop.</div>
+      </div>
+    </div>
+    <div class="term">
+      <div><span class="prompt">$</span> skogai run --cabinet=sudo-hero</div>
+      <div><span class="ok">[ok]</span> connected to night-city.sktx</div>
+      <div><span class="warn">[warn]</span> rooftop signal at 87%</div>
+      <div><span class="prompt">$</span> <span style="background:var(--sk-neon-green);color:var(--sk-primary-fg);">_</span></div>
+    </div>
+  </div>
+</body>
+</html>

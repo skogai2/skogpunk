@@ -1,0 +1,212 @@
+<!doctype html>
+<!-- @dsCard group="Colors" name="Colors" subtitle="Neon palette + surface ladder + semantic roles" viewport="1280x1600" -->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Skogai Arcade — Color Palette</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  html, body { margin: 0; padding: 0; }
+  body { padding: 32px; }
+  .wrap { max-width: 1280px; margin: 0 auto; }
+  .head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 32px; padding-bottom: 16px; border-bottom: 2px solid var(--sk-border); }
+  .head h1 { margin: 0; color: var(--sk-neon-magenta); text-shadow: var(--sk-glow-magenta); }
+  .head .sub { color: var(--sk-fg-muted); }
+
+  .section { margin-bottom: 40px; }
+  .section h2 { color: var(--sk-fg-2); margin: 0 0 4px 0; }
+  .section .lead { color: var(--sk-fg-muted); margin: 0 0 16px 0; }
+
+  /* Big featured palette tiles */
+  .neon-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+  }
+  .neon-tile {
+    height: 140px;
+    border-radius: var(--sk-radius-panel);
+    border: 1px solid var(--sk-border);
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+  }
+  .neon-tile .swatch {
+    position: absolute; inset: 0;
+    background: var(--swatch);
+    opacity: 0.92;
+  }
+  .neon-tile .info {
+    position: relative;
+    z-index: 1;
+    color: #07060d;
+    font-family: var(--sk-font-ui);
+    font-size: 11px;
+  }
+  .neon-tile .name {
+    position: relative; z-index: 1;
+    font-family: var(--sk-font-display);
+    font-size: 11px;
+    color: #07060d;
+    text-shadow: 0 0 8px rgba(255,255,255,0.45);
+  }
+
+  /* Surface ladder */
+  .ladder { display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; }
+  .ladder .step {
+    height: 110px;
+    border-radius: var(--sk-radius-panel);
+    border: 1px solid var(--sk-border-soft);
+    padding: 10px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    background: var(--swatch);
+  }
+  .ladder .step .name { font-family: var(--sk-font-ui); font-size: 11px; color: var(--sk-fg); }
+  .ladder .step .hex  { font-family: var(--sk-font-mono); font-size: 11px; color: var(--sk-fg-muted); }
+
+  /* Foreground row on dark */
+  .fg-row { background: var(--sk-bg); border: 1px solid var(--sk-border-soft); border-radius: var(--sk-radius-panel); padding: 24px; }
+  .fg-row .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+  .fg-row .item { display: flex; flex-direction: column; gap: 6px; }
+  .fg-row .label { font-family: var(--sk-font-ui); font-size: 10px; color: var(--sk-fg-muted); }
+  .fg-row .sample { font-family: var(--sk-font-display); font-size: 18px; }
+  .fg-row .hex { font-family: var(--sk-font-mono); font-size: 11px; color: var(--sk-fg-muted); }
+
+  /* Semantic role table */
+  .roles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .role {
+    background: var(--sk-card);
+    border: 1px solid var(--sk-border);
+    border-radius: var(--sk-radius-panel);
+    padding: 16px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .role .chip {
+    height: 36px; border-radius: 2px;
+    background: var(--swatch);
+    border: 1px solid rgba(0,0,0,0.4);
+    box-shadow: var(--glow);
+  }
+  .role .name { font-family: var(--sk-font-display); font-size: 11px; color: var(--sk-fg); }
+  .role .desc { font-family: var(--sk-font-body); font-size: 16px; color: var(--sk-fg-muted); line-height: 1.3; }
+  .role .var  { font-family: var(--sk-font-mono); font-size: 11px; color: var(--sk-fg-2); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="head">
+    <h1 class="sk-h2">PALETTE</h1>
+    <div class="sub sk-label">Skogai Arcade — neon on night-violet canvas</div>
+  </header>
+
+  <!-- ============ Neon brand palette ============ -->
+  <section class="section">
+    <h2 class="sk-h3">Arcade neons</h2>
+    <p class="lead sk-body-sm">Saturated, glowing accents. Use sparingly — primary action, active state, score / status. Never as broad fills.</p>
+    <div class="neon-grid">
+      <div class="neon-tile" style="--swatch: #ff3ea0;"><div class="swatch"></div><div class="name">MAGENTA</div><div class="info">--sk-neon-magenta · #ff3ea0</div></div>
+      <div class="neon-tile" style="--swatch: #ff7ad9;"><div class="swatch"></div><div class="name">PINK</div><div class="info">--sk-neon-pink · #ff7ad9</div></div>
+      <div class="neon-tile" style="--swatch: #b26bff;"><div class="swatch"></div><div class="name">VIOLET</div><div class="info">--sk-neon-violet · #b26bff</div></div>
+      <div class="neon-tile" style="--swatch: #8a3dff;"><div class="swatch"></div><div class="name">PURPLE</div><div class="info">--sk-neon-purple · #8a3dff</div></div>
+      <div class="neon-tile" style="--swatch: #4ee2ff;"><div class="swatch"></div><div class="name">CYAN</div><div class="info">--sk-neon-cyan · #4ee2ff</div></div>
+      <div class="neon-tile" style="--swatch: #4a7dff;"><div class="swatch"></div><div class="name">BLUE</div><div class="info">--sk-neon-blue · #4a7dff</div></div>
+      <div class="neon-tile" style="--swatch: #5fff8a;"><div class="swatch"></div><div class="name">GREEN</div><div class="info">--sk-neon-green · #5fff8a</div></div>
+      <div class="neon-tile" style="--swatch: #ffd23f;"><div class="swatch"></div><div class="name">YELLOW</div><div class="info">--sk-neon-yellow · #ffd23f</div></div>
+      <div class="neon-tile" style="--swatch: #ff9347;"><div class="swatch"></div><div class="name">ORANGE</div><div class="info">--sk-neon-orange · #ff9347</div></div>
+      <div class="neon-tile" style="--swatch: #ff4d6d;"><div class="swatch"></div><div class="name">RED</div><div class="info">--sk-neon-red · #ff4d6d</div></div>
+    </div>
+  </section>
+
+  <!-- ============ Surface ladder ============ -->
+  <section class="section">
+    <h2 class="sk-h3">Surface ladder</h2>
+    <p class="lead sk-body-sm">Disciplined dark surfaces from canvas → card. Step by tone, not shadow.</p>
+    <div class="ladder">
+      <div class="step" style="--swatch: #0b0716;"><div class="name">bg</div><div class="hex">#0b0716</div></div>
+      <div class="step" style="--swatch: #140a26;"><div class="name">bg-2</div><div class="hex">#140a26</div></div>
+      <div class="step" style="--swatch: #1a1030;"><div class="name">shell</div><div class="hex">#1a1030</div></div>
+      <div class="step" style="--swatch: #211640;"><div class="name">card</div><div class="hex">#211640</div></div>
+      <div class="step" style="--swatch: #2c1d54;"><div class="name">card-2</div><div class="hex">#2c1d54</div></div>
+      <div class="step" style="--swatch: #3a2966;"><div class="name">muted</div><div class="hex">#3a2966</div></div>
+      <div class="step" style="--swatch: #4a3580;"><div class="name">border</div><div class="hex">#4a3580</div></div>
+    </div>
+  </section>
+
+  <!-- ============ Foreground tones ============ -->
+  <section class="section">
+    <h2 class="sk-h3">Foreground</h2>
+    <p class="lead sk-body-sm">Text steps from bright pixel-white to deep dim. Maintain ≥ 4.5:1 contrast on body copy.</p>
+    <div class="fg-row">
+      <div class="grid">
+        <div class="item"><div class="sample" style="color: #f3e9ff;">Aa</div><div class="label">FG · primary</div><div class="hex">#f3e9ff</div></div>
+        <div class="item"><div class="sample" style="color: #c8b6e8;">Aa</div><div class="label">FG-2 · secondary</div><div class="hex">#c8b6e8</div></div>
+        <div class="item"><div class="sample" style="color: #8a78b3;">Aa</div><div class="label">FG-muted · meta</div><div class="hex">#8a78b3</div></div>
+        <div class="item"><div class="sample" style="color: #5b4d80;">Aa</div><div class="label">FG-dim · disabled</div><div class="hex">#5b4d80</div></div>
+        <div class="item"><div class="sample" style="color: #5fff8a; text-shadow: var(--sk-glow-green);">Aa</div><div class="label">terminal green</div><div class="hex">#5fff8a</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Semantic roles ============ -->
+  <section class="section">
+    <h2 class="sk-h3">Semantic roles</h2>
+    <p class="lead sk-body-sm">Reach for these before raw palette values.</p>
+    <div class="roles">
+      <div class="role" style="--swatch: #ff3ea0; --glow: var(--sk-glow-magenta);">
+        <div class="chip"></div>
+        <div class="name">PRIMARY</div>
+        <div class="var">--sk-primary</div>
+        <div class="desc">Main action. One per screen. Hero CTAs, "START", "INSERT COIN".</div>
+      </div>
+      <div class="role" style="--swatch: #4ee2ff; --glow: var(--sk-glow-cyan);">
+        <div class="chip"></div>
+        <div class="name">ACCENT</div>
+        <div class="var">--sk-accent</div>
+        <div class="desc">Selected state, hover ring, data viz, secondary highlight.</div>
+      </div>
+      <div class="role" style="--swatch: #5fff8a; --glow: var(--sk-glow-green);">
+        <div class="chip"></div>
+        <div class="name">SUCCESS</div>
+        <div class="var">--sk-success</div>
+        <div class="desc">Quest complete, validation passed, terminal "OK".</div>
+      </div>
+      <div class="role" style="--swatch: #ffd23f; --glow: var(--sk-glow-yellow);">
+        <div class="chip"></div>
+        <div class="name">WARNING</div>
+        <div class="var">--sk-warning</div>
+        <div class="desc">Coins, score, S+ rank, attention without alarm.</div>
+      </div>
+      <div class="role" style="--swatch: #ff4d6d;">
+        <div class="chip"></div>
+        <div class="name">DANGER</div>
+        <div class="var">--sk-danger</div>
+        <div class="desc">HP loss, destructive action, critical error.</div>
+      </div>
+      <div class="role" style="--swatch: #4ee2ff;">
+        <div class="chip"></div>
+        <div class="name">INFO</div>
+        <div class="var">--sk-info</div>
+        <div class="desc">Tooltips, neutral status, system messages.</div>
+      </div>
+      <div class="role" style="--swatch: #b26bff; --glow: var(--sk-glow-violet);">
+        <div class="chip"></div>
+        <div class="name">RING</div>
+        <div class="var">--sk-ring</div>
+        <div class="desc">Focus outline. 2px solid, offset 2px from element.</div>
+      </div>
+      <div class="role" style="--swatch: #4a3580;">
+        <div class="chip"></div>
+        <div class="name">BORDER</div>
+        <div class="var">--sk-border</div>
+        <div class="desc">Default panel edge. Use 1–2px; pixel UIs are square.</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

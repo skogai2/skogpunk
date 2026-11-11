@@ -1,0 +1,177 @@
+<!doctype html>
+<!-- @dsCard group="Brand" name="Index" subtitle="Design system entry point" viewport="1280x1100" -->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Skogai Arcade — Design System</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+  html, body { margin: 0; padding: 0; min-height: 100vh; }
+  body { padding: 48px 32px; }
+  .wrap { max-width: 1180px; margin: 0 auto; }
+
+  .hero {
+    position: relative;
+    background:
+      radial-gradient(circle at 20% 0%, rgba(178, 107, 255, 0.18), transparent 60%),
+      radial-gradient(circle at 90% 30%, rgba(78, 226, 255, 0.14), transparent 55%),
+      var(--sk-bg-2);
+    border: 1px solid var(--sk-border);
+    border-radius: var(--sk-radius-panel);
+    padding: 64px 48px;
+    overflow: hidden;
+  }
+  .hero .marquee {
+    font-family: var(--sk-font-display);
+    font-size: 56px;
+    line-height: 1;
+    color: var(--sk-fg);
+    margin: 0 0 8px 0;
+  }
+  .hero .marquee .a { color: var(--sk-neon-magenta); text-shadow: var(--sk-glow-magenta); }
+  .hero .marquee .b { color: var(--sk-neon-cyan);    text-shadow: var(--sk-glow-cyan); }
+  .hero .tag { font-family: var(--sk-font-ui); font-size: 12px; color: var(--sk-fg-muted); letter-spacing: 0.06em; }
+  .hero .lede {
+    font-family: var(--sk-font-body); font-size: 22px; color: var(--sk-fg-2);
+    max-width: 56ch; margin: 24px 0 28px 0; line-height: 1.5;
+    display: block;
+  }
+  .hero .ctas { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .nav-card {
+    background: var(--sk-card);
+    border: 1px solid var(--sk-border);
+    border-radius: var(--sk-radius-panel);
+    padding: 24px;
+    text-decoration: none;
+    color: inherit;
+    display: flex; flex-direction: column; gap: 12px;
+    min-height: 220px;
+    transition: transform 0.1s, border-color 0.12s, background 0.12s;
+  }
+  .nav-card:hover {
+    transform: translateY(-2px);
+    background: var(--sk-card-2);
+    border-color: var(--sk-border-strong);
+  }
+  .nav-card .num { font-family: var(--sk-font-mono); font-size: 11px; color: var(--sk-fg-muted); }
+  .nav-card .title { font-family: var(--sk-font-display); font-size: 14px; line-height: 1.3; color: var(--sk-fg); }
+  .nav-card .desc  { font-family: var(--sk-font-body); font-size: 18px; color: var(--sk-fg-2); line-height: 1.4; flex: 1; }
+  .nav-card .arrow { font-family: var(--sk-font-ui); font-size: 11px; color: var(--sk-neon-magenta); padding-top: 8px; text-shadow: var(--sk-glow-magenta); }
+
+  .nav-card.violet:hover { box-shadow: var(--sk-glow-violet); }
+  .nav-card.cyan:hover   { box-shadow: var(--sk-glow-cyan); }
+  .nav-card.yellow:hover { box-shadow: var(--sk-glow-yellow); }
+  .nav-card.green:hover  { box-shadow: var(--sk-glow-green); }
+  .nav-card.magenta:hover{ box-shadow: var(--sk-glow-magenta); }
+
+  .footer-strip {
+    margin-top: 32px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+  }
+  .footer-strip .sk-plaque .sk-plaque-label { letter-spacing: 0.06em; }
+
+  .section-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin: 32px 0 12px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed var(--sk-border-soft);
+  }
+  .section-head .h { font-family: var(--sk-font-display); font-size: 14px; color: var(--sk-fg-2); }
+  .section-head .meta { font-family: var(--sk-font-ui); font-size: 10px; color: var(--sk-fg-muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="tag">▸ DESIGN SYSTEM · v0.9.7</div>
+    <h1 class="marquee"><span class="a">SKOG</span><span class="b">.AI</span> ARCADE</h1>
+    <p class="lede">A pixel-art neon design language for the Skogai product family. Dark cabinet, sparse glow, four sub-brand cabinets sharing one chassis. Press a card to enter.</p>
+    <div class="ctas">
+      <a class="sk-btn sk-btn-primary" href="preview/components.html">▶ INSERT COIN</a>
+      <a class="sk-btn sk-btn-outline" href="README.md">README</a>
+      <a class="sk-btn sk-btn-ghost" href="DESIGN.md">DESIGN.MD</a>
+    </div>
+  </header>
+
+  <div class="section-head">
+    <div class="h">FOUNDATIONS</div>
+    <div class="meta">tokens · type · spacing</div>
+  </div>
+  <div class="grid">
+    <a class="nav-card magenta" href="preview/colors.html">
+      <div class="num">01 · COLORS</div>
+      <div class="title">PALETTE</div>
+      <div class="desc">Neon brand stack, dark surface ladder, semantic roles, glow tokens.</div>
+      <div class="arrow">▶ OPEN</div>
+    </a>
+    <a class="nav-card cyan" href="preview/typography.html">
+      <div class="num">02 · TYPE</div>
+      <div class="title">TYPOGRAPHY</div>
+      <div class="desc">Press Start 2P for display, VT323 for body, Silkscreen for chrome.</div>
+      <div class="arrow">▶ OPEN</div>
+    </a>
+    <a class="nav-card yellow" href="preview/spacing.html">
+      <div class="num">03 · SPACE</div>
+      <div class="title">SPACING · RADIUS · SHADOW</div>
+      <div class="desc">Pixel rhythm, square edges, glow shadows, surface elevation.</div>
+      <div class="arrow">▶ OPEN</div>
+    </a>
+  </div>
+
+  <div class="section-head">
+    <div class="h">SYSTEM</div>
+    <div class="meta">primitives · brand</div>
+  </div>
+  <div class="grid">
+    <a class="nav-card green" href="preview/components.html">
+      <div class="num">04 · UI</div>
+      <div class="title">COMPONENTS</div>
+      <div class="desc">Buttons, plaques, quest strip, badges, cards, terminal.</div>
+      <div class="arrow">▶ OPEN</div>
+    </a>
+    <a class="nav-card violet" href="preview/brand.html">
+      <div class="num">05 · BRAND</div>
+      <div class="title">CABINETS</div>
+      <div class="desc">Sudo Hero · Wi-Fi Wizards · Honkers &amp; Hackers · Skog-Net Syndicate — one chassis, four accents.</div>
+      <div class="arrow">▶ OPEN</div>
+    </a>
+    <a class="nav-card cyan" href="preview/hud.html">
+      <div class="num">06 · HUD</div>
+      <div class="title">HUD FRAME</div>
+      <div class="desc">Poster chrome: status header, stage, dialogue plaque, quest strip — in four cabinets.</div>
+      <div class="arrow">▶ OPEN</div>
+    </a>
+    <a class="nav-card magenta" href="sample.html">
+      <div class="num">07 · DEMO</div>
+      <div class="title">SAMPLE SCREEN</div>
+      <div class="desc">Mission-select surface assembled from system primitives.</div>
+      <div class="arrow">▶ OPEN</div>
+    </a>
+  </div>
+
+  <div class="footer-strip">
+    <div class="sk-plaque sk-plaque-violet">
+      <div class="sk-plaque-label">TOKENS</div>
+      <div class="sk-plaque-value">120+</div>
+    </div>
+    <div class="sk-plaque sk-plaque-cyan">
+      <div class="sk-plaque-label">CABINETS</div>
+      <div class="sk-plaque-value">04</div>
+    </div>
+    <div class="sk-plaque sk-plaque-green">
+      <div class="sk-plaque-label">VERSION</div>
+      <div class="sk-plaque-value">v0.9.7</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

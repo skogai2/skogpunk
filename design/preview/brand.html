@@ -1,0 +1,245 @@
+<!doctype html>
+<!-- @dsCard group="Brand" name="Brand Cabinets" subtitle="Four cabinets: Sudo Hero / Wi-Fi Wizards / Honkers & Hackers / Skog-Net Syndicate" viewport="1280x1900" -->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Skogai Arcade — Brand Cabinets</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  html, body { margin: 0; padding: 0; }
+  body { padding: 32px; }
+  .wrap { max-width: 1280px; margin: 0 auto; }
+  .head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 32px; padding-bottom: 16px; border-bottom: 2px solid var(--sk-border); }
+  .head h1 { margin: 0; color: var(--sk-neon-pink); text-shadow: var(--sk-glow-magenta); }
+  .head .sub { color: var(--sk-fg-muted); }
+
+  .section { margin-bottom: 40px; }
+  .section > h2 { color: var(--sk-fg-2); margin: 0 0 4px 0; }
+  .section > .lead { color: var(--sk-fg-muted); margin: 0 0 20px 0; max-width: 70ch; }
+
+  /* Wordmarks */
+  .marks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .mark {
+    background: #050810;
+    border: 1px solid var(--sk-border);
+    border-radius: var(--sk-radius-panel);
+    padding: 28px 20px;
+    display: flex; flex-direction: column; gap: 10px; align-items: center;
+    text-align: center;
+  }
+  .mark .word { font-family: var(--sk-font-display); font-size: 22px; line-height: 1.15; }
+  .mark .word .a { display: block; }
+  .mark .tag  { font-family: var(--sk-font-ui); font-size: 10px; color: var(--sk-fg-muted); margin-top: 4px; }
+  .mark .name { font-family: var(--sk-font-ui); font-size: 11px; color: var(--sk-fg); }
+  .mark .sub  { font-family: var(--sk-font-ui); font-size: 10px; color: var(--sk-fg-muted); }
+
+  /* Cabinet swatch sets */
+  .cabs { display: grid; grid-template-columns: 1fr; gap: 24px; }
+  .cab {
+    background: var(--sk-bg-2);
+    border: 1px solid var(--sk-border);
+    border-radius: var(--sk-radius-panel);
+    padding: 24px;
+    display: grid;
+    grid-template-columns: 240px 1fr 1fr;
+    gap: 24px;
+    align-items: stretch;
+  }
+  .cab-id { display: flex; flex-direction: column; gap: 8px; }
+  .cab-id .num { font-family: var(--sk-font-mono); font-size: 11px; color: var(--sk-fg-muted); }
+  .cab-id .name { font-family: var(--sk-font-display); font-size: 16px; color: var(--sk-fg); line-height: 1.2; }
+  .cab-id .desc { font-family: var(--sk-font-body); font-size: 16px; color: var(--sk-fg-muted); line-height: 1.4; }
+
+  .cab-palette { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 6px; }
+  .cab-palette .swatch { height: 48px; border-radius: 2px; position: relative; border: 1px solid rgba(0,0,0,0.4); }
+  .cab-palette .swatch .hex { position: absolute; bottom: 4px; left: 4px; font-family: var(--sk-font-ui); font-size: 9px; color: rgba(0,0,0,0.7); }
+
+  .cab-uses { font-family: var(--sk-font-body); font-size: 16px; color: var(--sk-fg-muted); line-height: 1.5; }
+  .cab-uses ul { margin: 0; padding-left: 18px; }
+  .cab-uses li { margin-bottom: 4px; }
+  .cab-uses strong { color: var(--sk-fg-2); font-family: var(--sk-font-ui); font-size: 12px; }
+
+  /* Reference scenes */
+  .scenes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .cab-tint { display: flex; gap: 6px; align-items: center; margin-top: 10px; font-family: var(--sk-font-ui); font-size: 9px; color: var(--sk-fg-muted); }
+  .cab-tint i { width: 14px; height: 14px; border: 1px solid rgba(255,255,255,0.15); display: block; }
+  .scene { background: var(--sk-bg-2); border: 1px solid var(--sk-border); border-radius: var(--sk-radius-panel); padding: 12px; }
+  .scene img { display: block; width: 100%; height: 200px; object-fit: cover; border-radius: 2px; image-rendering: pixelated; }
+  .scene .cap { font-family: var(--sk-font-ui); font-size: 11px; color: var(--sk-fg-2); margin-top: 8px; }
+  .scene .meta { font-family: var(--sk-font-ui); font-size: 10px; color: var(--sk-fg-muted); margin-top: 2px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="head">
+    <h1 class="sk-h2">CABINETS</h1>
+    <div class="sub sk-label">Sub-brand systems on a shared chassis</div>
+  </header>
+
+  <!-- Wordmark / parent -->
+  <section class="section">
+    <h2 class="sk-h3">Parent wordmark</h2>
+    <p class="lead sk-body-sm">Skogai is the arcade. Each cabinet (sub-brand) plugs into the same chassis: same canvas, type, plaques, and quest strip — different accent and mascot vignette.</p>
+    <div class="marks">
+      <div class="mark">
+        <div class="word"><span class="a sk-glow-magenta">SKOG</span><span class="a sk-glow-cyan">.AI</span></div>
+        <div class="tag">▸ INSERT COIN TO START</div>
+        <div class="name">Primary lockup</div>
+      </div>
+      <div class="mark" style="background: #f3e9ff;">
+        <div class="word" style="color: #1a0420;">SKOG.AI</div>
+        <div class="tag" style="color: #5b4d80;">▸ INSERT COIN TO START</div>
+        <div class="name" style="color: #1a0420;">Inverse / dark on light</div>
+      </div>
+      <div class="mark">
+        <div class="word sk-glow-violet" style="font-size: 32px;">S</div>
+        <div class="tag">monogram · 32+ px</div>
+        <div class="name">Cabinet bug</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cabinets -->
+  <section class="section">
+    <h2 class="sk-h3">Cabinet themes</h2>
+    <p class="lead sk-body-sm">Each cabinet keeps the same surface ladder and chrome; the canvas tint, accent neon and mascot vignette change. Scope a screen with <code>data-cabinet</code> on any wrapper and the tokens swap. Never mix two cabinet accents on one screen.</p>
+    <div class="cabs">
+
+      <div class="cab" style="border-left: 4px solid var(--sk-neon-violet);">
+        <div class="cab-id">
+          <div class="num">CABINET 01</div>
+          <div class="name sk-glow-violet">SUDO HERO</div>
+          <div class="desc">The flagship coding adventure. Solo quest, single hero, terminal-led.</div>
+        </div>
+        <div>
+          <div class="cab-palette">
+            <div class="swatch" style="background: #b26bff;"><span class="hex">#b26bff</span></div>
+            <div class="swatch" style="background: #8a3dff;"><span class="hex">#8a3dff</span></div>
+            <div class="swatch" style="background: #ff7ad9;"><span class="hex">#ff7ad9</span></div>
+            <div class="swatch" style="background: #5fff8a;"><span class="hex">#5fff8a</span></div>
+          </div>
+          <div class="sk-meta" style="margin-top: 8px;">Primary: violet · Accent: pink · Terminal: green</div>
+          <div class="cab-tint"><i style="background:#0e0620"></i><i style="background:#180b32"></i><i style="background:#241548"></i> data-cabinet="sudo-hero"</div>
+        </div>
+        <div class="cab-uses">
+          <strong>USE FOR</strong>
+          <ul>
+            <li>Hero CTAs, quest start screens</li>
+            <li>Single-player onboarding</li>
+            <li>Personal dashboard / score view</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cab" style="border-left: 4px solid var(--sk-neon-magenta);">
+        <div class="cab-id">
+          <div class="num">CABINET 02</div>
+          <div class="name sk-glow-magenta">WI-FI WIZARDS</div>
+          <div class="desc">Co-op multiplayer. Magic-meets-network — squads, channels, packets-as-spells.</div>
+        </div>
+        <div>
+          <div class="cab-palette">
+            <div class="swatch" style="background: #ff3ea0;"><span class="hex">#ff3ea0</span></div>
+            <div class="swatch" style="background: #ff7ad9;"><span class="hex">#ff7ad9</span></div>
+            <div class="swatch" style="background: #4ee2ff;"><span class="hex">#4ee2ff</span></div>
+            <div class="swatch" style="background: #ffd23f;"><span class="hex">#ffd23f</span></div>
+          </div>
+          <div class="sk-meta" style="margin-top: 8px;">Primary: magenta · Accent: cyan · Coin: yellow</div>
+          <div class="cab-tint"><i style="background:#12071c"></i><i style="background:#1c0a2c"></i><i style="background:#2b1240"></i> data-cabinet="wifi-wizards"</div>
+        </div>
+        <div class="cab-uses">
+          <strong>USE FOR</strong>
+          <ul>
+            <li>Multiplayer lobbies, party UI</li>
+            <li>Network / sync / messaging features</li>
+            <li>Live status, channel chrome</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cab" style="border-left: 4px solid var(--sk-neon-cyan);">
+        <div class="cab-id">
+          <div class="num">CABINET 03</div>
+          <div class="name sk-glow-cyan">HONKERS &amp; HACKERS</div>
+          <div class="desc">Casual chaos mode. Goose mascot, prank-the-grid, time-attack scoring.</div>
+        </div>
+        <div>
+          <div class="cab-palette">
+            <div class="swatch" style="background: #4ee2ff;"><span class="hex">#4ee2ff</span></div>
+            <div class="swatch" style="background: #2fe0d0;"><span class="hex">#2fe0d0</span></div>
+            <div class="swatch" style="background: #ffd23f;"><span class="hex">#ffd23f</span></div>
+            <div class="swatch" style="background: #ff7ad9;"><span class="hex">#ff7ad9</span></div>
+          </div>
+          <div class="sk-meta" style="margin-top: 8px;">Primary: cyan · Rails: teal · Coin: yellow · Pop: pink</div>
+          <div class="cab-tint"><i style="background:#05101f"></i><i style="background:#081a2e"></i><i style="background:#0e2a45"></i> data-cabinet="honkers-hackers"</div>
+        </div>
+        <div class="cab-uses">
+          <strong>USE FOR</strong>
+          <ul>
+            <li>Time-attack / arcade mini-games</li>
+            <li>Daily-prank mode, leaderboards</li>
+            <li>Casual / playful onboarding</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cab" style="border-left: 4px solid var(--sk-neon-acid);">
+        <div class="cab-id">
+          <div class="num">CABINET 04</div>
+          <div class="name sk-glow-acid">SKOG-NET SYNDICATE</div>
+          <div class="desc">City-forest infrastructure. Eco-credits, root integration, long-running systems work.</div>
+        </div>
+        <div>
+          <div class="cab-palette">
+            <div class="swatch" style="background: #3dff9e;"><span class="hex">#3dff9e</span></div>
+            <div class="swatch" style="background: #5fff8a;"><span class="hex">#5fff8a</span></div>
+            <div class="swatch" style="background: #ff3ea0;"><span class="hex">#ff3ea0</span></div>
+            <div class="swatch" style="background: #b26bff;"><span class="hex">#b26bff</span></div>
+          </div>
+          <div class="sk-meta" style="margin-top: 8px;">Primary: acid green · Headline: magenta · Signage: violet</div>
+          <div class="cab-tint"><i style="background:#050f0c"></i><i style="background:#081a14"></i><i style="background:#0e2c21"></i> data-cabinet="skognet-syndicate"</div>
+        </div>
+        <div class="cab-uses">
+          <strong>USE FOR</strong>
+          <ul>
+            <li>Infrastructure, sync and uptime surfaces</li>
+            <li>Sustainability / resource dashboards</li>
+            <li>Long-horizon progress and integration flows</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reference scenes -->
+  <section class="section">
+    <h2 class="sk-h3">Reference scenes</h2>
+    <p class="lead sk-body-sm">Pixel-art set pieces from the marketing canon. Use as inspiration for hero modules and loading states — never as literal screens.</p>
+    <div class="scenes">
+      <div class="scene">
+        <img src="../assets/scene-sudo-hero.png" alt="Sudo Hero scene" />
+        <div class="cap">SUDO HERO · cabinet 01</div>
+        <div class="meta">night-city violet · single hero · terminal HUD</div>
+      </div>
+      <div class="scene">
+        <img src="../assets/scene-wifi-wizards.png" alt="Wi-Fi Wizards scene" />
+        <div class="cap">WI-FI WIZARDS · cabinet 02</div>
+        <div class="meta">cyan + magenta · co-op squad · packet spells</div>
+      </div>
+      <div class="scene">
+        <img src="../assets/scene-honkers-hackers.png" alt="Honkers & Hackers scene" />
+        <div class="cap">HONKERS &amp; HACKERS · cabinet 03</div>
+        <div class="meta">cyan on navy · goose mascot · time-attack</div>
+      </div>
+      <div class="scene">
+        <img src="../assets/scene-skognet-syndicate.webp" alt="Skog-Net Syndicate scene" />
+        <div class="cap">SKOG-NET SYNDICATE · cabinet 04</div>
+        <div class="meta">acid green · city-forest · eco-credits HUD</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

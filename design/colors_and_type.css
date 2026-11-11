@@ -1,0 +1,223 @@
+/* ==========================================================================
+   Skogai Arcade — Colors & Type
+   Pixel-art neon arcade design language (cyberpunk + retro game UI)
+   ========================================================================== */
+
+/* ---- Brand fonts (uploaded) -------------------------------------------- */
+/* BigBlueTerm 437 — IBM PC BIOS bitmap + Nerd Font icon glyphs.
+   Authoritative terminal face. Use via --sk-font-terminal.            */
+@font-face {
+  font-family: "BigBlueTerm";
+  src: url("fonts/BigBlueTerm437NerdFontMono-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* BigBlueTerm Plus — extended Nerd Font set. Falls through to 437 if absent. */
+@font-face {
+  font-family: "BigBlueTermPlus";
+  src: url("fonts/BigBlueTermPlusNerdFontMono-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* Departure Mono — modern pixel display alternate. Falls through if absent. */
+@font-face {
+  font-family: "DepartureMono";
+  src: url("fonts/DepartureMonoNerdFontMono-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---- Web fonts (Google Fonts substitutes for display + body) ----------- */
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Silkscreen:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap");
+
+:root {
+  /* ====================================================================
+     COLOR — Core neon palette
+     Dark-canvas-first: backgrounds are deep night-violet; accents are
+     saturated arcade neons. Use semantic vars first; raw palette second.
+     ==================================================================== */
+
+  /* --- Canvas / shells --- */
+  --sk-bg:           #0b0716;   /* deepest base canvas / outside cabinet */
+  --sk-bg-2:         #140a26;   /* secondary canvas behind cards         */
+  --sk-shell:        #1a1030;   /* shell chrome / app frame              */
+  --sk-card:         #211640;   /* contained panel surface               */
+  --sk-card-2:       #2c1d54;   /* raised / hover                        */
+  --sk-muted:        #3a2966;   /* divider, quiet surface                */
+  --sk-overlay:      rgba(8, 4, 20, 0.78);
+
+  /* --- Foreground / text --- */
+  --sk-fg:           #f3e9ff;   /* primary text                           */
+  --sk-fg-2:         #c8b6e8;   /* secondary text                         */
+  --sk-fg-muted:     #8a78b3;   /* metadata, helper, quiet labels         */
+  --sk-fg-dim:       #5b4d80;   /* disabled / placeholder                 */
+  --sk-fg-on-neon:   #1a0420;   /* dark text on a bright neon fill        */
+
+  /* --- Borders & rings --- */
+  --sk-border:       #4a3580;
+  --sk-border-soft:  #2a1d52;
+  --sk-border-strong:#6f4ec2;
+  --sk-ring:         #d65cff;
+
+  /* --- Brand neons (arcade signs) --- */
+  --sk-neon-magenta: #ff3ea0;   /* primary action / Honkers & Hackers     */
+  --sk-neon-pink:    #ff7ad9;
+  --sk-neon-violet:  #b26bff;   /* SUDO HERO primary                      */
+  --sk-neon-purple:  #8a3dff;
+  --sk-neon-cyan:    #4ee2ff;   /* Wi-Fi Wizards / data viz               */
+  --sk-neon-blue:    #4a7dff;
+  --sk-neon-green:   #5fff8a;   /* terminal / success                     */
+  --sk-neon-acid:    #3dff9e;   /* eco signage / Skog-Net Syndicate       */
+  --sk-neon-teal:    #2fe0d0;   /* cool data / Honkers HUD rails          */
+  --sk-neon-yellow:  #ffd23f;   /* coin / score / S+ rank                 */
+  --sk-neon-orange:  #ff9347;   /* warning                                */
+  --sk-neon-red:     #ff4d6d;   /* HP / danger                            */
+
+  /* --- Semantic roles --- */
+  --sk-primary:      var(--sk-neon-magenta);
+  --sk-primary-fg:   var(--sk-fg-on-neon);
+  --sk-accent:       var(--sk-neon-cyan);
+  --sk-success:      var(--sk-neon-green);
+  --sk-warning:      var(--sk-neon-yellow);
+  --sk-danger:       var(--sk-neon-red);
+  --sk-info:         var(--sk-neon-cyan);
+
+  /* --- Glow shadows (defining gesture) --- */
+  --sk-glow-magenta: 0 0 6px #ff3ea0, 0 0 14px rgba(255, 62, 160, 0.55);
+  --sk-glow-violet:  0 0 6px #b26bff, 0 0 14px rgba(178, 107, 255, 0.55);
+  --sk-glow-cyan:    0 0 6px #4ee2ff, 0 0 14px rgba(78, 226, 255, 0.55);
+  --sk-glow-green:   0 0 4px #5fff8a, 0 0 10px rgba(95, 255, 138, 0.5);
+  --sk-glow-yellow:  0 0 4px #ffd23f, 0 0 10px rgba(255, 210, 63, 0.55);
+
+  /* --- Inset CRT glow on plaques --- */
+  --sk-inset-violet: inset 0 0 0 2px #4a3580, inset 0 0 12px rgba(178, 107, 255, 0.35);
+  --sk-inset-cyan:   inset 0 0 0 2px #2a6f8a, inset 0 0 12px rgba(78, 226, 255, 0.35);
+
+  /* ====================================================================
+     TYPOGRAPHY
+     - Display (headline) → Press Start 2P (8-bit pixel)
+     - UI / chrome        → Silkscreen     (taller pixel)
+     - Body / terminal    → VT323          (chunky CRT)
+     - Terminal emulator  → BigBlueTerm    (IBM PC BIOS + Nerd Font icons)
+     - Mono / code        → JetBrains Mono (legible code)
+     - Pixel mono alt     → DepartureMono  (modern pixel — optional)
+     ==================================================================== */
+
+  --sk-font-display:  "Press Start 2P", "Silkscreen", monospace;
+  --sk-font-ui:       "Silkscreen", "Press Start 2P", monospace;
+  --sk-font-body:     "VT323", "JetBrains Mono", monospace;
+  --sk-font-mono:     "JetBrains Mono", "VT323", ui-monospace, monospace;
+  --sk-font-terminal: "BigBlueTermPlus", "BigBlueTerm", "DepartureMono", "VT323", ui-monospace, monospace;
+  --sk-font-pixel-mono: "DepartureMono", "BigBlueTerm", "VT323", ui-monospace, monospace;
+
+  /* Type scale — snaps to 2px steps */
+  --sk-text-10: 10px;  --sk-text-12: 12px;  --sk-text-14: 14px;
+  --sk-text-16: 16px;  --sk-text-18: 18px;  --sk-text-20: 20px;
+  --sk-text-24: 24px;  --sk-text-32: 32px;  --sk-text-40: 40px;
+  --sk-text-48: 48px;  --sk-text-60: 60px;
+
+  --sk-leading-tight:  1.0;
+  --sk-leading-snug:   1.2;
+  --sk-leading-normal: 1.4;
+  --sk-leading-loose:  1.6;
+
+  /* ====================================================================
+     SPACING / RADIUS / SHADOW
+     Pixel rhythm: 2 / 4 / 8 / 12 / 16 / 24 / 32 / 48
+     Radius is small or zero — pixel UIs are square-edged.
+     ==================================================================== */
+
+  --sk-space-2: 2px;   --sk-space-4: 4px;   --sk-space-6: 6px;
+  --sk-space-8: 8px;   --sk-space-12: 12px; --sk-space-16: 16px;
+  --sk-space-24: 24px; --sk-space-32: 32px; --sk-space-48: 48px;
+  --sk-space-64: 64px;
+
+  --sk-radius-0: 0;
+  --sk-radius-control: 2px;   /* buttons, inputs */
+  --sk-radius-panel:   4px;   /* cards, plaques */
+  --sk-radius-overlay: 6px;   /* dialogs, popovers */
+
+  --sk-shadow-panel:   0 2px 0 #000, 0 0 0 1px var(--sk-border);
+  --sk-shadow-card:    0 4px 0 rgba(0,0,0,0.6), 0 0 0 1px var(--sk-border);
+  --sk-shadow-overlay: 0 8px 0 rgba(0,0,0,0.5), 0 0 0 2px var(--sk-border-strong);
+}
+
+/* ====================================================================
+   CABINET THEMES
+   Four sub-brands, one chassis. Scope a screen with data-cabinet="…"
+   and the canvas tint + accent roles swap; every component keeps its
+   own rules. Never mix two cabinet accents on one screen.
+   ==================================================================== */
+
+[data-cabinet="sudo-hero"] {
+  --sk-bg: #0e0620; --sk-bg-2: #180b32; --sk-shell: #1d1038; --sk-card: #241548; --sk-card-2: #301c60;
+  --sk-border: #4a3580; --sk-border-strong: #8a3dff; --sk-ring: #b26bff;
+  --sk-primary: var(--sk-neon-violet); --sk-accent: var(--sk-neon-pink);
+  --sk-cabinet-glow: var(--sk-glow-violet);
+}
+[data-cabinet="wifi-wizards"] {
+  --sk-bg: #12071c; --sk-bg-2: #1c0a2c; --sk-shell: #230e36; --sk-card: #2b1240; --sk-card-2: #3a1854;
+  --sk-border: #6b2a6e; --sk-border-strong: #ff3ea0; --sk-ring: #ff7ad9;
+  --sk-primary: var(--sk-neon-magenta); --sk-accent: var(--sk-neon-cyan);
+  --sk-cabinet-glow: var(--sk-glow-magenta);
+}
+[data-cabinet="honkers-hackers"] {
+  --sk-bg: #05101f; --sk-bg-2: #081a2e; --sk-shell: #0b2138; --sk-card: #0e2a45; --sk-card-2: #133655;
+  --sk-border: #1f5f7a; --sk-border-strong: #2fa8c8; --sk-ring: #4ee2ff;
+  --sk-primary: var(--sk-neon-cyan); --sk-accent: var(--sk-neon-yellow);
+  --sk-cabinet-glow: var(--sk-glow-cyan);
+}
+[data-cabinet="skognet-syndicate"] {
+  --sk-bg: #050f0c; --sk-bg-2: #081a14; --sk-shell: #0b241b; --sk-card: #0e2c21; --sk-card-2: #133a2b;
+  --sk-border: #1f6647; --sk-border-strong: #2fb87a; --sk-ring: #3dff9e;
+  --sk-primary: var(--sk-neon-acid); --sk-accent: var(--sk-neon-magenta);
+  --sk-cabinet-glow: var(--sk-glow-green);
+}
+
+.sk-glow-acid { color: var(--sk-neon-acid); text-shadow: 0 0 6px #3dff9e, 0 0 14px rgba(61, 255, 158, 0.55); }
+
+/* ====================================================================
+   BASE TYPOGRAPHY UTILITIES
+   ==================================================================== */
+
+body {
+  background: var(--sk-bg);
+  color: var(--sk-fg);
+  font-family: var(--sk-font-body);
+  font-size: var(--sk-text-18);
+  line-height: var(--sk-leading-normal);
+  -webkit-font-smoothing: none;     /* keep pixel crispness */
+  font-smooth: never;
+  image-rendering: pixelated;
+}
+
+.sk-display     { font-family: var(--sk-font-display); line-height: var(--sk-leading-tight); letter-spacing: 0; }
+.sk-ui          { font-family: var(--sk-font-ui); }
+.sk-body        { font-family: var(--sk-font-body); }
+.sk-mono        { font-family: var(--sk-font-mono); }
+.sk-term        { font-family: var(--sk-font-terminal); font-feature-settings: "liga" 0, "calt" 0; }
+.sk-pixel-mono  { font-family: var(--sk-font-pixel-mono); }
+
+/* Headline roles */
+.sk-h1 { font-family: var(--sk-font-display); font-size: var(--sk-text-48); line-height: 1.1; }
+.sk-h2 { font-family: var(--sk-font-display); font-size: var(--sk-text-32); line-height: 1.15; }
+.sk-h3 { font-family: var(--sk-font-display); font-size: var(--sk-text-20); line-height: 1.2; }
+.sk-h4 { font-family: var(--sk-font-ui);      font-size: var(--sk-text-16); line-height: 1.2; }
+
+/* Body / chrome roles */
+.sk-body-lg     { font-family: var(--sk-font-body); font-size: var(--sk-text-24); }
+.sk-body-md     { font-family: var(--sk-font-body); font-size: var(--sk-text-20); }
+.sk-body-sm     { font-family: var(--sk-font-body); font-size: var(--sk-text-18); }
+.sk-label       { font-family: var(--sk-font-ui);   font-size: var(--sk-text-12); }
+.sk-meta        { font-family: var(--sk-font-ui);   font-size: var(--sk-text-10); color: var(--sk-fg-muted); }
+.sk-terminal    { font-family: var(--sk-font-terminal); font-size: var(--sk-text-16); color: var(--sk-neon-green); text-shadow: var(--sk-glow-green); font-feature-settings: "liga" 0, "calt" 0; }
+
+/* Neon text helpers */
+.sk-glow-magenta { color: var(--sk-neon-magenta); text-shadow: var(--sk-glow-magenta); }
+.sk-glow-violet  { color: var(--sk-neon-violet);  text-shadow: var(--sk-glow-violet);  }
+.sk-glow-cyan    { color: var(--sk-neon-cyan);    text-shadow: var(--sk-glow-cyan);    }
+.sk-glow-green   { color: var(--sk-neon-green);   text-shadow: var(--sk-glow-green);   }
+.sk-glow-yellow  { color: var(--sk-neon-yellow);  text-shadow: var(--sk-glow-yellow);  }

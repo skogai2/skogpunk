@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Cabinet · SUDO HERO</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  body { margin: 0; padding: 0; background: var(--sk-bg); min-height: 100vh; }
+  .cabinet { max-width: 1100px; margin: 0 auto; padding: 32px; }
+
+  /* HUD */
+  .hud {
+    display: grid; grid-template-columns: 48px 1fr auto; align-items: center; gap: 16px;
+    background: var(--sk-bg-2); padding: 12px 16px;
+    border: 2px solid var(--sk-border-soft); border-radius: var(--sk-radius-2);
+    margin-bottom: 16px;
+  }
+  .hud .avatar { width: 48px; height: 48px; background: var(--sk-neon-violet); border: 2px solid #1a0420; box-shadow: var(--sk-glow-violet); }
+  .hud .lockup .name { font-family: var(--sk-font-display); font-size: 14px; color: var(--sk-fg); }
+  .hud .lockup .sub { font-family: var(--sk-font-body); font-size: 18px; color: var(--sk-fg-muted); }
+  .hud .stats { display: flex; gap: 16px; font-family: var(--sk-font-ui); font-size: 14px; align-items:center; }
+  .hud .stat { display:flex; gap:6px; align-items:center; }
+  .hud .stat svg { width: 18px; height: 18px; }
+
+  /* Stage (the hero scene) */
+  .stage {
+    height: 360px;
+    background:
+      radial-gradient(ellipse at 70% 30%, rgba(178,107,255,.25), transparent 60%),
+      radial-gradient(ellipse at 20% 80%, rgba(255,62,160,.15), transparent 60%),
+      linear-gradient(180deg, #0e0820 0%, #1a0c3a 60%, #2a1054 100%);
+    border: 2px solid var(--sk-border); border-radius: var(--sk-radius-2);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  /* tiny pixel skyline */
+  .skyline { position:absolute; bottom: 0; left:0; right:0; height: 80px;
+    background:
+      linear-gradient(transparent 60%, #0b0716 60%) 0 0/100% 100%,
+      repeating-linear-gradient(90deg, #1a1030 0 22px, transparent 22px 30px, #211640 30px 56px, transparent 56px 70px);
+    background-blend-mode: normal;
+  }
+  .stars { position:absolute; inset:0;
+    background-image:
+      radial-gradient(2px 2px at 20% 20%, var(--sk-fg) 50%, transparent 51%),
+      radial-gradient(2px 2px at 80% 30%, var(--sk-neon-cyan) 50%, transparent 51%),
+      radial-gradient(2px 2px at 50% 15%, var(--sk-fg) 50%, transparent 51%),
+      radial-gradient(2px 2px at 65% 25%, var(--sk-fg-muted) 50%, transparent 51%),
+      radial-gradient(2px 2px at 35% 40%, var(--sk-neon-yellow) 50%, transparent 51%);
+    background-repeat: no-repeat;
+  }
+  .marquee {
+    position: relative; z-index: 2; text-align: center;
+  }
+  .marquee .label { font-family: var(--sk-font-ui); font-size: 12px; color: var(--sk-fg-muted); letter-spacing: .12em; }
+  .marquee .title { font-family: var(--sk-font-display); font-size: 56px; line-height: 1.05;
+    color: var(--sk-neon-violet); text-shadow: var(--sk-glow-violet); margin: 12px 0 8px; }
+  .marquee .sub  { font-family: var(--sk-font-body); font-size: 22px; color: var(--sk-fg-2); }
+
+  /* Plaques row */
+  .plaques { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 12px; margin-top: 16px; }
+  .plaque {
+    background: var(--sk-card); padding: 14px 18px; border-radius: var(--sk-radius-2);
+    box-shadow: var(--sk-inset-violet);
+  }
+  .plaque .lbl { font-family: var(--sk-font-ui); font-size: 10px; color: var(--sk-fg-muted); text-transform: uppercase; letter-spacing: .08em; }
+  .plaque .val { font-family: var(--sk-font-display); font-size: 22px; color: var(--sk-neon-violet); text-shadow: var(--sk-glow-violet); margin-top: 6px; }
+  .plaque ul { margin: 8px 0 0; padding-left: 16px; font-family: var(--sk-font-body); font-size: 18px; color: var(--sk-fg-2); }
+
+  /* Quest strip */
+  .quest-strip {
+    margin-top: 16px; background: var(--sk-card); border-radius: var(--sk-radius-2);
+    border: 2px solid var(--sk-border-soft); padding: 6px;
+  }
+  .quest { display:grid; grid-template-columns: 28px 1fr auto; gap:12px; align-items:center; padding:12px; }
+  .quest + .quest { border-top: 1px solid var(--sk-border-soft); }
+  .quest .ico { width: 24px; height: 24px; color: var(--sk-neon-violet); }
+  .quest .ico.done { color: var(--sk-neon-green); }
+  .quest .t { font-family: var(--sk-font-ui); font-size: 14px; color: var(--sk-fg); }
+  .quest .m { font-family: var(--sk-font-body); font-size: 16px; color: var(--sk-fg-muted); }
+  .quest .check { width: 20px; height: 20px; border: 2px solid var(--sk-border); border-radius: 2px; }
+  .quest .check.x { background: var(--sk-neon-green); border-color: var(--sk-neon-green); box-shadow: var(--sk-glow-green); }
+
+  .footer-row { display:grid; grid-template-columns: 1fr auto; gap: 12px; margin-top: 16px; align-items: stretch; }
+  .term { background: var(--sk-bg); border: 1px solid var(--sk-border-soft); border-radius: 4px; padding: 10px 14px; font-family: var(--sk-font-mono); font-size: 14px; color: var(--sk-neon-green); }
+  .btn-primary { display:inline-flex; align-items:center; gap:8px; font-family:var(--sk-font-ui); font-size:14px; text-transform:uppercase; letter-spacing:.04em; padding:14px 22px; background:var(--sk-neon-magenta); color:var(--sk-primary-fg); border:2px solid #6b1a47; border-radius:2px; box-shadow: var(--sk-elev-1), var(--sk-glow-magenta); cursor:pointer; }
+</style>
+</head>
+<body>
+  <div class="cabinet">
+    <!-- HUD -->
+    <div class="hud">
+      <div class="avatar"></div>
+      <div class="lockup"><div class="name">SUDO_HERO</div><div class="sub">Lv. 14 · Night City rooftop</div></div>
+      <div class="stats">
+        <span class="stat" style="color:var(--sk-neon-red)"><svg><use href="../assets/icons.svg#sk-heart"/></svg>4/5</span>
+        <span class="stat" style="color:var(--sk-neon-yellow)"><svg><use href="../assets/icons.svg#sk-coin"/></svg>248</span>
+        <span class="stat" style="color:var(--sk-neon-cyan)"><svg><use href="../assets/icons.svg#sk-signal"/></svg>87%</span>
+      </div>
+    </div>
+
+    <!-- Stage -->
+    <div class="stage">
+      <div class="stars"></div>
+      <div class="skyline"></div>
+      <div class="marquee">
+        <div class="label">CABINET 01</div>
+        <div class="title">SUDO HERO</div>
+        <div class="sub">A new contract just hit the wire.</div>
+      </div>
+    </div>
+
+    <!-- Summary plaque + rank -->
+    <div class="plaques">
+      <div class="plaque">
+        <div class="lbl">Mission summary</div>
+        <ul>
+          <li>Patched the rooftop antenna</li>
+          <li>Recovered 2 of 3 passkey fragments</li>
+          <li>Bonus: no alarms triggered</li>
+        </ul>
+      </div>
+      <div class="plaque"><div class="lbl">Rank</div><div class="val">S+</div></div>
+      <div class="plaque"><div class="lbl">Score</div><div class="val">142,830</div></div>
+    </div>
+
+    <!-- Quest strip -->
+    <div class="quest-strip">
+      <div class="quest"><svg class="ico done"><use href="../assets/icons.svg#sk-check"/></svg><div><div class="t">Patch the rooftop antenna</div><div class="m">Completed · +120 XP</div></div><div class="check x"></div></div>
+      <div class="quest"><svg class="ico"><use href="../assets/icons.svg#sk-key"/></svg><div><div class="t">Recover the lost passkey</div><div class="m">2 of 3 fragments found</div></div><div class="check"></div></div>
+      <div class="quest"><svg class="ico"><use href="../assets/icons.svg#sk-chest"/></svg><div><div class="t">Open the loot chest</div><div class="m">Locked · needs key</div></div><div class="check"></div></div>
+    </div>
+
+    <div class="footer-row">
+      <div class="term">
+        <div><span style="color:var(--sk-fg-muted)">$</span> skogai run --cabinet=sudo-hero</div>
+        <div><span style="color:var(--sk-neon-green)">[ok]</span> connected · rooftop signal strong</div>
+        <div><span style="color:var(--sk-fg-muted)">$</span> <span style="background:var(--sk-neon-green);color:var(--sk-primary-fg)">_</span></div>
+      </div>
+      <button class="btn-primary"><svg width="16" height="16"><use href="../assets/icons.svg#sk-play"/></svg>Continue run</button>
+    </div>
+  </div>
+</body>
+</html>

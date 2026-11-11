@@ -1,0 +1,339 @@
+/* ==========================================================================
+   Skogai Arcade — Components
+   Reusable component primitives. Loads after colors_and_type.css.
+   Class prefix: .sk-
+   ========================================================================== */
+
+/* =========================================================================
+   BUTTONS
+   2px radius. Pixel-square, glow on primary, no rounded blobs.
+   ========================================================================= */
+.sk-btn {
+  font-family: var(--sk-font-ui);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  padding: 10px 18px;
+  border: 1px solid var(--sk-border);
+  background: var(--sk-card);
+  color: var(--sk-fg);
+  border-radius: var(--sk-radius-control);
+  cursor: pointer;
+  transition: transform 0.06s, box-shadow 0.12s, background 0.12s;
+  user-select: none;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.sk-btn:hover  { background: var(--sk-card-2); }
+.sk-btn:active { transform: translateY(1px); }
+.sk-btn:disabled {
+  color: var(--sk-fg-dim);
+  background: var(--sk-bg-2);
+  border-color: var(--sk-border-soft);
+  cursor: not-allowed;
+}
+.sk-btn:focus-visible {
+  outline: 2px solid var(--sk-ring);
+  outline-offset: 2px;
+}
+
+.sk-btn-primary {
+  background: var(--sk-neon-magenta);
+  color: var(--sk-fg-on-neon);
+  border-color: #c8267d;
+  box-shadow: var(--sk-glow-magenta);
+}
+.sk-btn-primary:hover { background: #ff5cb0; }
+
+.sk-btn-secondary {
+  background: var(--sk-neon-cyan);
+  color: var(--sk-fg-on-neon);
+  border-color: #2a9bb8;
+  box-shadow: var(--sk-glow-cyan);
+}
+.sk-btn-secondary:hover { background: #6ce8ff; }
+
+.sk-btn-success {
+  background: var(--sk-neon-green);
+  color: var(--sk-fg-on-neon);
+  border-color: #2fb863;
+  box-shadow: var(--sk-glow-green);
+}
+.sk-btn-danger {
+  background: transparent;
+  color: var(--sk-neon-red);
+  border-color: var(--sk-neon-red);
+}
+.sk-btn-danger:hover { background: rgba(255, 77, 109, 0.12); }
+
+.sk-btn-outline {
+  background: transparent;
+  color: var(--sk-fg);
+  border-color: var(--sk-border-strong);
+}
+.sk-btn-ghost {
+  background: transparent;
+  color: var(--sk-fg-2);
+  border-color: transparent;
+}
+.sk-btn-ghost:hover { background: var(--sk-card); color: var(--sk-fg); }
+
+/* =========================================================================
+   BADGES / STATUS PILLS
+   ========================================================================= */
+.sk-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--sk-font-ui); font-size: 10px;
+  padding: 4px 8px;
+  border-radius: 2px;
+  border: 1px solid currentColor;
+  background: rgba(0,0,0,0.25);
+}
+.sk-badge-primary { color: var(--sk-neon-magenta); }
+.sk-badge-cyan    { color: var(--sk-neon-cyan); }
+.sk-badge-success { color: var(--sk-neon-green); }
+.sk-badge-warning { color: var(--sk-neon-yellow); }
+.sk-badge-danger  { color: var(--sk-neon-red); }
+.sk-badge-muted   { color: var(--sk-fg-muted); }
+
+/* =========================================================================
+   PLAQUES (HUD readouts)
+   Inset CRT bevel; label above, value monospace below.
+   ========================================================================= */
+.sk-plaque {
+  background: #050810;
+  border-radius: var(--sk-radius-panel);
+  padding: 14px 16px;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.sk-plaque-label {
+  font-family: var(--sk-font-ui); font-size: 10px;
+  color: var(--sk-fg-muted);
+}
+.sk-plaque-value {
+  font-family: var(--sk-font-display); font-size: 22px;
+  line-height: 1.1;
+}
+.sk-plaque-violet { box-shadow: var(--sk-inset-violet); }
+.sk-plaque-violet .sk-plaque-value { color: var(--sk-neon-violet); text-shadow: var(--sk-glow-violet); }
+.sk-plaque-cyan   { box-shadow: var(--sk-inset-cyan); }
+.sk-plaque-cyan   .sk-plaque-value { color: var(--sk-neon-cyan);   text-shadow: var(--sk-glow-cyan); }
+.sk-plaque-green  { box-shadow: inset 0 0 0 2px #1f5538, inset 0 0 12px rgba(95,255,138,0.30); }
+.sk-plaque-green  .sk-plaque-value { color: var(--sk-neon-green);  text-shadow: var(--sk-glow-green); }
+
+/* =========================================================================
+   QUEST STRIP
+   The signature module: icon · title · progress · status.
+   ========================================================================= */
+.sk-quest-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  background: var(--sk-bg-2);
+  border: 1px solid var(--sk-border);
+  border-radius: var(--sk-radius-panel);
+  padding: 10px;
+}
+.sk-quest {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  background: var(--sk-card);
+  border-radius: 4px;
+  border: 1px solid var(--sk-border-soft);
+}
+.sk-quest-icon {
+  width: 44px; height: 44px;
+  display: grid; place-items: center;
+  font-family: var(--sk-font-display); font-size: 18px;
+  background: #050810;
+  border-radius: 2px;
+  box-shadow: var(--sk-inset-violet);
+  color: var(--sk-fg);
+}
+.sk-quest-title { font-family: var(--sk-font-ui); font-size: 12px; color: var(--sk-fg); margin-bottom: 4px; }
+.sk-quest-meta  { font-family: var(--sk-font-ui); font-size: 10px; color: var(--sk-fg-muted); }
+.sk-quest-progress {
+  height: 6px; background: #050810;
+  border-radius: 1px; margin: 6px 0;
+  border: 1px solid var(--sk-border-soft);
+  overflow: hidden;
+}
+.sk-quest-progress > div {
+  height: 100%;
+  background: var(--sk-neon-magenta);
+  box-shadow: var(--sk-glow-magenta);
+}
+.sk-quest-done .sk-quest-icon  { color: var(--sk-neon-green); box-shadow: inset 0 0 0 2px #1f5538, inset 0 0 12px rgba(95,255,138,0.4); }
+.sk-quest-done .sk-quest-title { color: var(--sk-neon-green); text-shadow: var(--sk-glow-green); }
+.sk-quest-active .sk-quest-icon{ color: var(--sk-neon-magenta); box-shadow: inset 0 0 0 2px #802054, inset 0 0 12px rgba(255,62,160,0.4); }
+.sk-quest-locked { opacity: 0.55; }
+.sk-quest-locked .sk-quest-icon{ color: var(--sk-fg-muted); box-shadow: inset 0 0 0 2px var(--sk-border-soft); }
+
+/* =========================================================================
+   CARDS
+   ========================================================================= */
+.sk-card {
+  background: var(--sk-card);
+  border-radius: var(--sk-radius-panel);
+  padding: 20px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.sk-card-default { border: 1px solid var(--sk-border-soft); }
+.sk-card-raised  { border: 1px solid var(--sk-border-strong); box-shadow: var(--sk-shadow-card); }
+.sk-card-eyebrow {
+  font-family: var(--sk-font-ui); font-size: 10px;
+  color: var(--sk-neon-magenta); text-shadow: var(--sk-glow-magenta);
+}
+.sk-card-title {
+  font-family: var(--sk-font-display); font-size: 16px;
+  color: var(--sk-fg); margin: 0; line-height: 1.3;
+}
+.sk-card-body {
+  font-family: var(--sk-font-body); font-size: 18px;
+  color: var(--sk-fg-2); margin: 0; line-height: 1.4;
+}
+.sk-card-footer {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 4px;
+}
+
+/* =========================================================================
+   INPUTS
+   ========================================================================= */
+.sk-field {
+  display: flex; flex-direction: column; gap: 6px;
+  min-width: 240px;
+}
+.sk-field-label {
+  font-family: var(--sk-font-ui); font-size: 10px;
+  color: var(--sk-fg-muted);
+}
+.sk-field-help {
+  font-family: var(--sk-font-body); font-size: 14px;
+  color: var(--sk-fg-muted);
+}
+.sk-input {
+  font-family: var(--sk-font-body); font-size: 18px;
+  background: #050810;
+  color: var(--sk-fg);
+  border: 1px solid var(--sk-border);
+  border-radius: var(--sk-radius-control);
+  padding: 8px 10px;
+  outline: none;
+}
+.sk-input:focus {
+  border-color: var(--sk-ring);
+  box-shadow: 0 0 0 2px rgba(214, 92, 255, 0.35);
+}
+
+/* =========================================================================
+   HUD FRAME
+   The poster chrome: status header · stage · footer strip. Double-stroke
+   bracket frames, hearts, segment meters, mascot dialogue plaque.
+   Scope with data-cabinet on .sk-hud (or any ancestor) to retint.
+   ========================================================================= */
+.sk-hud {
+  background: var(--sk-bg);
+  border: 2px solid var(--sk-border-strong);
+  border-radius: var(--sk-radius-panel);
+  padding: var(--sk-space-8);
+  display: flex; flex-direction: column; gap: var(--sk-space-8);
+}
+/* Double-stroke bracket box — the defining frame gesture */
+.sk-frame {
+  border: 2px solid var(--sk-primary);
+  border-radius: 2px;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.9), inset 0 0 0 3px rgba(0,0,0,0.5), 0 0 8px -2px var(--sk-primary);
+  background: rgba(2, 6, 12, 0.72);
+}
+.sk-hud-bar {
+  display: flex; align-items: stretch; gap: var(--sk-space-8);
+  padding: var(--sk-space-8);
+}
+.sk-hud-brand {
+  font-family: var(--sk-font-display); font-size: var(--sk-text-16);
+  line-height: 1.25; color: var(--sk-primary);
+  text-shadow: var(--sk-cabinet-glow, var(--sk-glow-magenta));
+  padding-right: var(--sk-space-12);
+  border-right: 2px solid var(--sk-border);
+  display: flex; flex-direction: column; justify-content: center; gap: 4px;
+  white-space: nowrap;
+}
+.sk-hud-brand small {
+  display: block; font-family: var(--sk-font-ui); font-size: var(--sk-text-10);
+  color: var(--sk-fg-muted); text-shadow: none; letter-spacing: 0.08em;
+}
+.sk-hud-avatar {
+  width: 56px; height: 56px; flex: none;
+  background: #050810; border-radius: 2px;
+  box-shadow: inset 0 0 0 2px var(--sk-primary);
+  display: grid; place-items: center;
+  font-family: var(--sk-font-display); font-size: var(--sk-text-18);
+  color: var(--sk-primary);
+}
+.sk-hud-stats { display: flex; flex: 1; gap: var(--sk-space-8); flex-wrap: wrap; align-items: center; }
+.sk-stat { display: grid; grid-template-columns: auto 1fr auto; gap: var(--sk-space-8); align-items: center; }
+.sk-stat-label { font-family: var(--sk-font-ui); font-size: var(--sk-text-10); color: var(--sk-fg-2); letter-spacing: 0.06em; }
+.sk-stat-value { font-family: var(--sk-font-ui); font-size: var(--sk-text-12); color: var(--sk-fg); }
+
+/* Hearts — pixel HP row */
+.sk-hearts { display: flex; gap: 3px; }
+.sk-hearts i { width: 12px; height: 11px; display: block; background: var(--sk-neon-red); clip-path: polygon(20% 0,40% 0,50% 20%,60% 0,80% 0,100% 25%,100% 50%,50% 100%,0 50%,0 25%); }
+.sk-hearts i.empty { background: var(--sk-border-soft); }
+
+/* Segment meter — blocky, not a smooth bar */
+.sk-meter { display: flex; gap: 2px; padding: 2px; background: #050810; box-shadow: inset 0 0 0 1px var(--sk-border-soft); }
+.sk-meter i { width: 8px; height: 12px; display: block; background: var(--sk-primary); box-shadow: 0 0 5px -1px var(--sk-primary); }
+.sk-meter i.empty { background: var(--sk-border-soft); box-shadow: none; }
+
+/* Stage — the hero region the art sits in */
+/* Deterministic stage box — art is cropped to the frame, never sizes it. */
+.sk-hud-stage { position: relative; height: 260px; overflow: hidden; border-radius: 2px; background: var(--sk-bg-2); }
+.sk-hud-stage > img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 62%; image-rendering: pixelated; }
+.sk-hud-stage-tall { height: 420px; }
+.sk-hud-stage-short { height: 170px; }
+
+/* Announce banner — the one dominant headline */
+.sk-announce { padding: var(--sk-space-16) var(--sk-space-24); text-align: center; display: flex; flex-direction: column; gap: var(--sk-space-8); }
+.sk-announce-title {
+  font-family: var(--sk-font-display); font-size: var(--sk-text-32); line-height: 1.1;
+  margin: 0; color: var(--sk-fg); text-shadow: var(--sk-cabinet-glow, var(--sk-glow-magenta));
+}
+.sk-announce-sub { font-family: var(--sk-font-ui); font-size: var(--sk-text-12); color: var(--sk-fg-2); margin: 0; letter-spacing: 0.04em; line-height: 1.6; }
+
+/* Mascot dialogue plaque */
+.sk-dialogue { display: grid; grid-template-columns: 72px 1fr; gap: var(--sk-space-12); padding: var(--sk-space-12); align-items: start; }
+.sk-dialogue-portrait { width: 72px; height: 72px; background: #050810; border-radius: 2px; box-shadow: inset 0 0 0 2px var(--sk-primary); display: grid; place-items: center; font-family: var(--sk-font-display); font-size: var(--sk-text-24); color: var(--sk-primary); }
+/* Pixel icon — fill inherits currentColor. Sizes snap to 16/24/32/40. */
+.sk-icon { width: 24px; height: 24px; display: block; fill: currentColor; image-rendering: pixelated; }
+.sk-icon-16 { width: 16px; height: 16px; }
+.sk-icon-32 { width: 32px; height: 32px; }
+.sk-icon-40 { width: 40px; height: 40px; }
+.sk-dialogue-name { font-family: var(--sk-font-ui); font-size: var(--sk-text-12); color: var(--sk-primary); text-shadow: var(--sk-cabinet-glow, var(--sk-glow-magenta)); margin-bottom: 6px; letter-spacing: 0.06em; }
+.sk-dialogue-text { font-family: var(--sk-font-body); font-size: var(--sk-text-20); color: var(--sk-fg); margin: 0; line-height: 1.35; }
+
+/* Footer strip — quest / rank row */
+.sk-hud-foot { display: flex; gap: var(--sk-space-8); align-items: stretch; }
+.sk-hud-foot > .sk-frame { padding: var(--sk-space-8) var(--sk-space-12); display: flex; align-items: center; gap: var(--sk-space-8); font-family: var(--sk-font-ui); font-size: var(--sk-text-12); color: var(--sk-fg-2); }
+.sk-hud-foot > .sk-frame.grow { flex: 1; }
+.sk-hud-foot .done { color: var(--sk-neon-green); text-shadow: var(--sk-glow-green); }
+
+/* =========================================================================
+   TERMINAL BLOCK
+   ========================================================================= */
+.sk-terminal-block {
+  margin: 0;
+  background: #04060c;
+  border: 1px solid #14352a;
+  border-radius: 4px;
+  padding: 16px 18px;
+  font-family: var(--sk-font-terminal);
+  font-feature-settings: "liga" 0, "calt" 0;
+  font-size: 16px;
+  line-height: 1.3;
+  color: var(--sk-neon-green);
+  text-shadow: var(--sk-glow-green);
+  white-space: pre;
+  overflow-x: auto;
+}
